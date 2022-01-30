@@ -42,7 +42,7 @@ namespace SimpleCrm.Web
                 endpoints.MapGet("/", async context =>
                 {
                    var greeting = configuration["Greeting"];
-                    await context.Response.WriteAsync("Welcome To My Word!");
+                    await context.Response.WriteAsync(greeting);
                 });
             });
         }

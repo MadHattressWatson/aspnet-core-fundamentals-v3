@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace SimpleCrm
 {
-    public class Course(Lazy<IA>a)
-    {
-    }
-}
+}  
+    
