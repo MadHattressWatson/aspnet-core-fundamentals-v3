@@ -37,17 +37,21 @@ namespace SimpleCrm.Web
                     ExceptionHandler = context => context.Response.WriteAsync("Oops!")
                 });
             }
+                      
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
-            app.UseWelcomePage(new WelcomePageOptions 
+            app.UseWelcomePage(new WelcomePageOptions
             {
-                Path = "/welcome" 
+                Path = "/welcome"
             });
+
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                endpoints.MapGet("/hello", async context =>
                 {
                     var message = greeter.GetGreeting();
                     await context.Response.WriteAsync(message);
