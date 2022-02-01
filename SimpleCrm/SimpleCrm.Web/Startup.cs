@@ -20,6 +20,7 @@ namespace SimpleCrm.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddSingleton<IGreeter, ConfigurationGreeter>();
         }
 
@@ -38,24 +39,13 @@ namespace SimpleCrm.Web
                 });
             }
                       
-            app.UseDefaultFiles();
             app.UseStaticFiles();
-
-            app.UseWelcomePage(new WelcomePageOptions
-            {
-                Path = "/welcome"
-            });
-
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/hello", async context =>
-                {
-                    var message = greeter.GetGreeting();
-                    await context.Response.WriteAsync(message);
-                });
+                endpoints.MapDefaultControllerRoute();   
             });
         }
     }
