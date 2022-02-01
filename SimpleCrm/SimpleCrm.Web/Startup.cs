@@ -30,9 +30,21 @@ namespace SimpleCrm.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler(new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = context => context.Response.WriteAsync("Oops!")
+                });
+            }
 
-            app.UseWelcomePage(new WelcomePageOptions { Path = "" });
+            app.UseWelcomePage(new WelcomePageOptions 
+            {
+                Path = "/welcome" 
+            });
+
             app.UseRouting();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
