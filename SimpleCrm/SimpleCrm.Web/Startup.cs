@@ -24,20 +24,22 @@ namespace SimpleCrm.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(
-            IApplicationBuilder app,
-            IHostingEnvironment env,
-            IGreeter greeter)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IGreeter greeter)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.UseWelcomePage(new WelcomePageOptions { Path = "" });
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                var message = greeter.GetGreeting();
-                await context.Response.WriteAsync(message);
+                endpoints.MapGet("/", async context =>
+                {
+                    var message = greeter.GetGreeting();
+                    await context.Response.WriteAsync(message);
+                });
             });
         }
     }
