@@ -4,7 +4,7 @@
     {
         public string Index()
         {
-            return "Hello from a Controller.";
+            return "Hello from a Controller ";
         }
     }
-}
+};
