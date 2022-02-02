@@ -1,22 +1,19 @@
-﻿namespace SimpleCrm.Web.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace SimpleCrm.Web.Controllers
 {
+    [Route("about")]
     public class AboutController
     {
-        public string List(string phone)
+        [Route("")]
+        public string Phone()
         {
-            return "phone";
+            return "555-555-1234";
         }
-        public string Address(string id)
+        public string Address()
         {
-            return id;
+            return "USA";
         }
-        
-        public string Find (string id)
-        {
-            string result = "USA" + id;
-
-            return result;
-
-        }
+     
     }
 }
