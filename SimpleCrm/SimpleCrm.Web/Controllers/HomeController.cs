@@ -1,22 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using SimpleCrm.Web.Models;
 
 namespace SimpleCrm.Web.Controllers
 {
     public class HomeControler : Controller
     {
+        private ICustomerData _customerData;
+
+        public HomeController(ICustomerData customerData)
+        { 
+            _customerData = customerData;
+        }     
+        
         public IActionResult Index()
         {
-          var model = new CustomerModel
-            {
-                Id = 1,
-                FirstName = "John",
-                LastName = "Doe",
-                PhoneNumber = "555-555-1234"
-            };
+            var model = _CustomerData.GetAll();
             return View(model);
               
         }
