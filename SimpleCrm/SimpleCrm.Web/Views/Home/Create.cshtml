@@ -2,30 +2,31 @@
 @model SimpleCrm.Customer
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-@{
-}
+<div>
 
-<h1>Create</h1>
+    <h1>Create</h1>
 
-@using(Html.BeginForm())
-{
     <div>
-    @Html.LabelFor( x => x.FirstName)
-    @Html.TextBoxFor( x => x.FirstName)
+        @using(Html.BeginForm())
+        {
+            <div>
+                @Html.LabelFor( x => x.FirstName)
+                @Html.TextBoxFor( x => x.FirstName)
+            </div>
+            <div>
+            @Html.LabelFor( x => x.LastName
+            @Html.TextBoxFor( x => x.LastName)
+            </div>
+            <div>
+                @Html.LabelFor( x => x.PhoneNumber)
+                @Html.TextBoxFor( x => x.PhoneNumber)
+            </div>
+            <div>
+                @Html.DropDownListFor( x => x.Type, Html.GetEnumSelectList(typeof(CustomerType)))
+            </div>
+            <div>
+                @Html.CheckBoxFor( x => x.OptInNewsletter)
+            </div>
+           }
     </div>
-     <div>
-        @Html.LabelFor( x => x.LastName
-        @Html.TextBoxFor( x => x.LastName)
-    </div>
-     <div>
-        @Html.LabelFor( x => x.PhoneNumber)
-        @Html.TextBoxFor( x => x.PhoneNumber)
-    </div>
-    <div>
-        @Html.DropDownListFor( x => x.Type, Html.GetEnumSelectList(typeof(CustomerType)))
-    </div>
-   
-    <div>
-        @Html.CheckBoxFor( x => x.OptInNewsletter)
-    </div>
-}
+</div>
