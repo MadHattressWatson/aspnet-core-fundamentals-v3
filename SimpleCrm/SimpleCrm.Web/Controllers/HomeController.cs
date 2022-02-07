@@ -18,6 +18,17 @@ namespace SimpleCrm.Web.Controllers
             _greeter = greeter;
         }     
         
+        public IActionResult Details (int id)
+        {
+            Customer cust =_customerData.Get(id);
+            if (cust== null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(cust);
+        }
+
+
         public IActionResult Index()
         {
             var model = new HomePageViewModel();
@@ -25,7 +36,10 @@ namespace SimpleCrm.Web.Controllers
             CurrentMessage = _greeter.GetGreeting();
 
             return View(model);
-        } 
-        
+        }
+        public IActionResult Create()
+        {
+            return View(); 
+        }
     }
 }

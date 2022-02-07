@@ -15,6 +15,11 @@
         @foreach (var customer in Model.Customers)
         {
             <tr>
+                <td><a href="/home/details/@customer.Id">Details</a></td>
+                <td>@Html.ActionLink("View", "Details", new{id=customer.Id})</td>
+                {
+                    return RedirectToAction (nameof(ICustomerData));
+                }
                 <td>@customer.Id</td>
                 <td>@customer.FirstName</td>
                 <td>@customer.LastName</td>

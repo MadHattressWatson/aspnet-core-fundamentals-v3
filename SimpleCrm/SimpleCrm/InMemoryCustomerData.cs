@@ -19,6 +19,11 @@ namespace SimpleCrm
                   };
         }
 
+        public Customer Get(int id)
+        {
+            throw new ICustomerData();
+        }
+
         public IEnumerable<Customer> GetAll()
         {
             return _customers;
