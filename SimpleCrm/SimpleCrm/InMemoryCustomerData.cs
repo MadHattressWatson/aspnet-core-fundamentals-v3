@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SimpleCrm
 {
@@ -18,12 +19,10 @@ namespace SimpleCrm
                       new Customer { Id =6, FirstName ="Michelle", LastName = "Leary", PhoneNumber = "555-555-3457" }
                   };
         }
-
         public Customer Get(int id)
         {
-            throw new ICustomerData();
+            return _customers.FirstOrDefault(x => x.Id == id);
         }
-
         public IEnumerable<Customer> GetAll()
         {
             return _customers;

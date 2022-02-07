@@ -1,4 +1,6 @@
-﻿@model SimpleCrm.Web.Models.Home.HomePageViewModel
+﻿@using SimpleCrm.Web.Controllers
+@using SimpleCrm.Web.Models.Home
+@model HomePageViewModel
 
 <html>
     <head>
@@ -16,10 +18,7 @@
         {
             <tr>
                 <td><a href="/home/details/@customer.Id">Details</a></td>
-                <td>@Html.ActionLink("View", "Details", new{id=customer.Id})</td>
-                {
-                    return RedirectToAction (nameof(ICustomerData));
-                }
+                <td>@Html.ActionLink("View", nameof(HomeController.Details), new{id=customer.Id})</td>
                 <td>@customer.Id</td>
                 <td>@customer.FirstName</td>
                 <td>@customer.LastName</td>

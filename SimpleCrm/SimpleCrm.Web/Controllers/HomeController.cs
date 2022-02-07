@@ -9,8 +9,7 @@ namespace SimpleCrm.Web.Controllers
         private ICustomerData _customerData;
         private readonly IGreeter _greeter;
 
-        public IEnumerable<Customer> Customers { get; private set; }
-        public string CurrentMessage { get; private set; }
+
 
         public HomeController(ICustomerData customerData, IGreeter greeter)
         { 
@@ -20,20 +19,20 @@ namespace SimpleCrm.Web.Controllers
         
         public IActionResult Details (int id)
         {
-            Customer cust =_customerData.Get(id);
-            if (cust== null)
+            var customer=_customerData.Get(id);
+            if (customer== null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            return View(cust);
+            return View(customer);
         }
 
 
         public IActionResult Index()
         {
             var model = new HomePageViewModel();
-            Customers = _customerData.GetAll();
-            CurrentMessage = _greeter.GetGreeting();
+            model.Customers = _customerData.GetAll();
+            model.CurrentMessage = _greeter.GetGreeting();
 
             return View(model);
         }
