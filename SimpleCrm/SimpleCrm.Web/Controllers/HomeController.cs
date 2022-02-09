@@ -38,6 +38,7 @@ namespace SimpleCrm.Web.Controllers
         {
             return View();
         }
+
         [HttpPost()]
         [ValidateAntiForgeryToken()]
         public IActionResult Create(CustomerEditViewModel model)
@@ -56,6 +57,7 @@ namespace SimpleCrm.Web.Controllers
 
                 return RedirectToAction(nameof(Details), new { id = customer.Id });
             }
+            return View();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SimpleCrm.Web.Models.Home
 {
-    public class CustomerEditViewModel
+    public class CustomerEditViewModel 
     {
         public int Id { get; set; }
         [Display(Name ="First Name")]

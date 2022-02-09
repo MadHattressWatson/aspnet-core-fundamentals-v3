@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SimpleCrm.SqlDbServices1\SimpleCrm.SqlDbServices.csproj" />
     <ProjectReference Include="..\SimpleCrm\SimpleCrm.csproj" />
   </ItemGroup>
 
