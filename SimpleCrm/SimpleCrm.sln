@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCrm.Web", "SimpleCrm.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCrm", "SimpleCrm\SimpleCrm.csproj", "{124B1125-96AC-4661-9533-766C8F8D5593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCrm.SqlDbServices1", "SimpleCrm.SqlDbServices1\SimpleCrm.SqlDbServices1.csproj", "{DFF6C9F7-6BA1-473B-8CAE-ECA16209949E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCrm.SqlDbServices", "SimpleCrm.SqlDbServices\SimpleCrm.SqlDbServices.csproj", "{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{124B1125-96AC-4661-9533-766C8F8D5593}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{124B1125-96AC-4661-9533-766C8F8D5593}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{124B1125-96AC-4661-9533-766C8F8D5593}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFF6C9F7-6BA1-473B-8CAE-ECA16209949E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFF6C9F7-6BA1-473B-8CAE-ECA16209949E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFF6C9F7-6BA1-473B-8CAE-ECA16209949E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFF6C9F7-6BA1-473B-8CAE-ECA16209949E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace SimpleCrm.SqlDbServices1
+namespace SimpleCrm.SqlDbServices
 {
     public class SimpleCrmDbContext : DbContext
     {
