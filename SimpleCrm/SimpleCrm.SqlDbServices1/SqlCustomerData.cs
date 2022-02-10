@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SimpleCrm.SqlDbServices1;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SimpleCrm.SqlDbServices
@@ -21,7 +22,7 @@ namespace SimpleCrm.SqlDbServices
         public void Save(Customer customer)
         {
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+
         }
     }
 }

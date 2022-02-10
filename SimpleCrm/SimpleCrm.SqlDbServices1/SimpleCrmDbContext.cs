@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace SimpleCrm.SqlDbServices
+namespace SimpleCrm.SqlDbServices1
 {
     public class SimpleCrmDbContext : DbContext
     {
