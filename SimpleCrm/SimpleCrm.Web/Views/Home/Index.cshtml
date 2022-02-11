@@ -1,5 +1,4 @@
 ﻿@using SimpleCrm.Web.Controllers
-@using SimpleCrm.Web.Models.Home
 @model HomePageViewModel
 @{
     ViewBag.Title = "Customers";
@@ -23,7 +22,13 @@
         }
 
     </table>
+    
+@if(Model.Customers.Count == 0)
+{
+  <h2>No Customers Returned</h2>
+}
 
-    @SectionWriters footer { 
+    @section footer { 
         <h3>@Model.CurrentMessage</h3>
      }
+     

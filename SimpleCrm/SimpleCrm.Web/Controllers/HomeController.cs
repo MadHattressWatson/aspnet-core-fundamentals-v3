@@ -2,6 +2,7 @@
 using SimpleCrm.Web.Models.Home;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace SimpleCrm.Web.Controllers
 {
@@ -18,7 +19,7 @@ namespace SimpleCrm.Web.Controllers
         public IActionResult Index()
         {
             var model = new HomePageViewModel();
-            model.Customers = _customerData.GetAll();
+            model.Customers = _customerData.GetAll().ToList();
             model.CurrentMessage = _greeter.GetGreeting();
 
             return View(model);
