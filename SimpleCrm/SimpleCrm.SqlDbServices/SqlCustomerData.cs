@@ -5,7 +5,7 @@ namespace SimpleCrm.SqlDbServices
 {
     public class SqlCustomerData: ICustomerData
     {
-        private SimpleCrmDbContext _context;
+        private readonly SimpleCrmDbContext _context;
         public SqlCustomerData(SimpleCrmDbContext context)
         {
             _context = context;
