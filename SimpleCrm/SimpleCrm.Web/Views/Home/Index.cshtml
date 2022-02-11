@@ -13,7 +13,9 @@
         {
             <tr>
                 <td><a href="/home/details/@customer.Id">Details</a></td>
-                <td>@Html.ActionLink("View", nameof(HomeController.Details), new{id=customer.Id})</td>
+                <td>@Html.ActionLink("View", nameof(HomeController.Details), new{id=customer.Id})
+                <a asp-action="Details" asp-route-id="customer.id">Details</a>) 
+                </td>
                 <td>@customer.Id</td>
                 <td>@customer.FirstName</td>
                 <td>@customer.LastName</td>
@@ -22,13 +24,16 @@
         }
 
     </table>
+
+    <a asp-action="Create" asp-controller="Home">Create</a>
+ 
     
-@if(Model.Customers.Count == 0)
+    @if(Model.Customers.Count == 0)
 {
-  <h2>No Customers Returned</h2>
+        <h2>No Customers Returned</h2>
 }
 
-    @section footer { 
-        <h3>@Model.CurrentMessage</h3>
-     }
+         @section footer { 
+                     <h3>@Model.CurrentMessage</h3>
+         }
      
