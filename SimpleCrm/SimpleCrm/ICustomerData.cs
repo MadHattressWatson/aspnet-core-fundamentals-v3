@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace SimpleCrm
 {
@@ -10,6 +7,7 @@ namespace SimpleCrm
     {
         IEnumerable<Customer> GetAll();
         Customer Get(int id);
-        void Save(Customer customer);
+        void Add(Customer customer);
+        void Update(Customer customer);
     }
 }
