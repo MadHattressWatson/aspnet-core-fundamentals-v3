@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,12 @@ namespace SimpleCrm.Web
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SimpleCrmConnection"));
             });
+            services.AddDbContext<CrmIdentityDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SimpleCrmConnection"));
+            });
+            services.AddIdentity<CrmUser, IdentityRole>()
+                .AddEntityFrameworkStores<CrmIdentityDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,22 +60,20 @@ namespace SimpleCrm.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization(); 
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                   "default",
-                   "{controller=Home}/{action=Index}/{id?}"
-                    );
-
-                endpoints.MapControllerRoute(
-                    name: "contact",
-                    pattern: "Contact/{phone}",
-                    constraints: new { phone = "^\\d{3}-\\d{3}-\\d{4}-$" },
-                    defaults: new { controller = "Contact", action = "List" });
+                    name: "default_route",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.Run(ctx => ctx.Response.WriteAsync("Not Found"));
+            app.Run(ctx => ctx.Response.WriteAsync("Not found"));
         }
     }
 }
+
 
 
