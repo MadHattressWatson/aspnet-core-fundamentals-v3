@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SimpleCrm.Web.Models.Home;
 using System;
-using System.Linq;
+
 
 namespace SimpleCrm.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private ICustomerData _customerData;
@@ -14,11 +16,11 @@ namespace SimpleCrm.Web.Controllers
             _customerData = customerData;
 
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var model = new HomePageViewModel();
-            model.Customers = _customerData.GetAll().ToList();
+            model.Customers = _customerData.GetAll();
            
             return View(model);
         }
@@ -54,7 +56,7 @@ namespace SimpleCrm.Web.Controllers
 
                 _customerData.Add(customer);
 
-                return RedirectToAction(nameof(ProblemDetails), new{id = customer.Id});
+                return RedirectToAction(nameof(Details), new{id = customer.Id});
             }
 
             return View();
@@ -92,7 +94,7 @@ namespace SimpleCrm.Web.Controllers
                 var customer = _customerData.Get(model.Id);
                 if (customer == null)
 
-                {
+                { 
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -103,7 +105,7 @@ namespace SimpleCrm.Web.Controllers
                 customer.Type = model.Type;
 
                 _customerData.Update(customer);
-                return RedirectToAction(nameof(Details), new { id = model.Id });
+                return RedirectToAction(nameof(Details), new { id = customer.Id });
 
                 }
 

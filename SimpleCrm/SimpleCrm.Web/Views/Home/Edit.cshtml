@@ -36,7 +36,7 @@
 
 			<div>
 				<label asp-for="Type"></label>	
-				<select asp-for="Type" asp-items="Html.GetEnumSelectList(typeof(CustomerType))">
+				<select asp-for="Type" asp-items="@Html.GetEnumSelectList(typeof(SimpleCrm.CustomerType))">
 				</select>
 				<span asp-validation-for="Type"></span>	
 			</div>
