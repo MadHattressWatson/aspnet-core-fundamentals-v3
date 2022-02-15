@@ -12,7 +12,7 @@
     </div>
     <footer> 
        
-            @RenderSection("footer", false)
+            @await Component.InvokeAsync("Greeting")
             &copy;@DateTime.Now.Year SimpleCrm Sample Corp.
 
     </footer>
