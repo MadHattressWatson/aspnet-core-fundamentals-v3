@@ -11,16 +11,7 @@
     <table>
         @foreach (var customer in Model.Customers)
         {
-            <tr>
-                <td>@customer.Id</td>
-                <td>@customer.FirstName</td>
-                <td>@customer.LastName</td>
-                <td>@customer.PhoneNumber</td>
-                <td>
-                <a asp-action="Details" asp-route-id="@customer.Id">Detail</a>
-                <a asp-action="Edit" asp-route-id="@customer.Id">Edit</a>
-                </td>
-            </tr>
+            <partial name= "_Summary" model= "customer" />
         }
 
     </table>
