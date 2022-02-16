@@ -5,7 +5,7 @@ namespace SimpleCrm
 {
     public class InMemoryCustomerData : ICustomerData
     {
-        static IList<Customer> _customers;
+        static readonly IList<Customer> _customers;
 
         static InMemoryCustomerData()
         {

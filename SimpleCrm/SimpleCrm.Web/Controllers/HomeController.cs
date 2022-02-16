@@ -9,7 +9,7 @@ namespace SimpleCrm.Web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private ICustomerData _customerData;
+        private readonly ICustomerData _customerData;
 
         public HomeController(ICustomerData customerData)
         { 
