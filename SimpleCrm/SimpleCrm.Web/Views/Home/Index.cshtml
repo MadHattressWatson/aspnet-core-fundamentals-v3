@@ -8,14 +8,14 @@
 
     <h1>Customers</h1>
     
-    <table>
+   
         @foreach (var customer in Model.Customers)
         {
             <partial name= "_Summary" model= "customer" />
 
         }
 
-    </table>
+  
 
     <a asp-controller="Home" asp-action="Create">Create</a>
  
