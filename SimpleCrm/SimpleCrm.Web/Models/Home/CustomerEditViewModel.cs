@@ -19,6 +19,7 @@ namespace SimpleCrm.Web.Models.Home
         [MinLength(7), MaxLength(12)]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+
         public CustomerType Type { get; set; }
 
         [Display(Name = "Would you like to sign up for our Newsletter?")]

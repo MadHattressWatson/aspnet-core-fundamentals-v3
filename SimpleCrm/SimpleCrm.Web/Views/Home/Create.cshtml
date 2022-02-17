@@ -32,12 +32,16 @@
             </div>
 
             <div>
+                @Html.LabelFor(x => x.Type)
                 @Html.DropDownListFor( x => x.Type, Html.GetEnumSelectList(typeof(CustomerType)))
             </div>
 
             <div>
                 @Html.LabelFor(x=>x.OptInNewsletter)
                 @Html.CheckBoxFor( x => x.OptInNewsletter)
+            </div>
+            <div>
+                <input type = "Submit" value = "Save" />
             </div>
            }
     </div>
