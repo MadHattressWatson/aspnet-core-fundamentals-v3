@@ -49,7 +49,7 @@ namespace SimpleCrm.Web.Controllers
                     ModelState.AddModelError("", result.Description);
                 }
             }
-            return NoContent();
+            return View(model);
 		}
          
     }
