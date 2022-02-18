@@ -15,16 +15,19 @@
 <div>
 	@if (User.Identity.IsAuthenticated)
 	{
-		<span>Hello, @Model.DisplayName</span>
+		<a class="mdl-navigation_link" asp-acton="Logout" asp-controller="Account">Logout</a> 
+		@*<span>Hello, @Model.DisplayName</span>
 		<form method = "post" asp-antiforgery="true" asp-action="Logout" asp-controller="Account">
 			<button type="submit">Logout</button>
-		</form>
+		</form>*@
 	}
 
 	else
 	{
-		<span>Anonymous</span>
+		@*<span>Anonymous</span>
 		<a asp-action="Login" asp-controller="Account">Login</a>@("|")
-		<a asp-ation="Register" asp-controller="Account">Register</a>
+		<a asp-ation="Register" asp-controller="Account">Register</a>*@
+
+		<a class="mdl-navigation_link" asp-action="Login" asp-controller="Account">Login</a> 
 	}
 </div>

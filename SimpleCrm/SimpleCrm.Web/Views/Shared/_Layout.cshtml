@@ -1,28 +1,53 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://googleapis.com/icom?family=Material+Icons">
     <link rel="stylesheet" href="/css/vendor.min.css">
+    <link rel="stylesheet" href="/css/site.css">
     <script src="/jsvendor.min.js"></script> 
 
 </head>
 <body>
-    <div>
-        @await Component.InvokeAsync("LoginLogout")
-    </div>
-    <div>
-        @RenderBody()
-    </div>
-    <footer> 
-       
-            @await Component.InvokeAsync("Greeting")
-            @RenderSection("footer", required: false)
-            &copy;@DateTime.Now.Year SimpleCrm Sample Corp.
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout_header">
+            <div class="mdl-layout_header-row">
 
-    </footer>
+                <span class="mdl-layout-title">Simple CRM</span>
+
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation ,dl-layout--larger-screen-only">
+                    <a class="mdl-navigation_link" href="/index.html>Customers"></a>
+                    <a class="mdl-navigation_link" asp-action="Create" asp-controller="Home">Create</a>
+                    @await Component.InvokeAsync("LoginLogout")
+                </nav>
+             </div>
+        </header>
+        <div class="mdl-layout_drawer"></div>
+        <span class="mdl-layout-title">Simple CRM</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/">Customers</a>
+                <a class="mdl-navigation__link" asp-action="Create" asp-controller="Home">Create</a>
+                @await Component.InvokeAsync("LoginLogout")
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            @RenderBody()
+        </main>
+        <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer__left-section">
+                @await Component.InvokeAsync("Greeting")
+            </div>
+            <div class="mdl-mini-footer__right-section">
+                <ul class="mdl-mini-footer__link-list">
+                    <li><a href="#">&copy; @DateTime.Now.Year</a></li>
+                    <li><a href="#">SimpleCrm Sample Corp.</a></li>
+                    @RenderSection("footer", required: false)
+                </ul>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
 
