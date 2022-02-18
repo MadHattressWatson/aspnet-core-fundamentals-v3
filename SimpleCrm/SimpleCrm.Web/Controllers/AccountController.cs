@@ -15,7 +15,7 @@ namespace SimpleCrm.Web.Controllers
         public AccountController(UserManager<CrmUser> userManager,
             SignInManager<CrmUser> signInManager)
 
-        {  
+        {
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
@@ -23,7 +23,7 @@ namespace SimpleCrm.Web.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View ();
+            return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -49,8 +49,47 @@ namespace SimpleCrm.Web.Controllers
                     ModelState.AddModelError("", result.Description);
                 }
             }
-            return View(model);
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+            {
+                await signInManager.SignOutAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+        [HttpGet]
+        public IActionResult Login(string returUrl)
+		{
+            return View();
 		}
-         
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginUserViewModel model)
+		{
+            if (ModelState.IsValid)
+			{
+                var loginResult = await signInManager.PasswordSignInAsync(
+                  model.UserName, model.Password, model.RememberMe, false);
+                if (loginResult.Succeeded)
+				{
+                    if (Url.IsLocalUrl(model.ReturnUrl))
+					{
+                        return Redirect(model.ReturnUrl);
+					}
+
+                    else
+					{
+                        return RedirectToAction("Index", "Home");
+					}
+				}
+
+                ModelState.AddModelError("", "Could not login");
+			}
+
+            return View();
+		}
+    
     }
 }
