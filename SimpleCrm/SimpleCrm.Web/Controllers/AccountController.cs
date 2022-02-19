@@ -60,7 +60,7 @@ namespace SimpleCrm.Web.Controllers
             }
 
         [HttpGet]
-        public IActionResult Login(string returUrl)
+        public IActionResult Login(string ReturUrl)
 		{
             return View();
 		}

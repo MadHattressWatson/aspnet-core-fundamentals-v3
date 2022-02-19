@@ -1,7 +1,7 @@
 ﻿@using SimpleCrm.Web.Controllers
 @model HomePageViewModel
 @{
-    ViewBag.Title = "Customers";
+    ViewBag.Title = "Home";
 }
 <div class="content">
 
@@ -13,7 +13,7 @@
         
         @foreach (var customer in Model.Customers)
         {
-          <partial name="_Summary", model="customer" />
+          <partial name="_Summary", model= "customer" />
           @*@Html.Partial("_Summary", customer);*@
         }
 
