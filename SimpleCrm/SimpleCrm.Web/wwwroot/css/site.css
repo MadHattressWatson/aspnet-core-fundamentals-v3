@@ -10,7 +10,7 @@
     z-index: 999;
 }
 
-.mdl-textfield_error.field-validation-error{
+.mdl-textfield__error.field-validation-error{
     visibility: visible;
 }
 
