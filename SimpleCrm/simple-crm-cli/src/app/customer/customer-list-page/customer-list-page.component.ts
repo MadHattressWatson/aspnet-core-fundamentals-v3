@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerListPageComponent implements OnInit {
 
+  customers: Customer[];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.customers = [
+      {
+        customerId: 1,
+        lastContactDate: '2020-01-01',
+        preferredContactMethod: 'email'
+      }
+    ];
   }
 
 }
