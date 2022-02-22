@@ -60,7 +60,7 @@ namespace SimpleCrm.Web.Controllers
             }
 
         [HttpGet]
-        public IActionResult Login(string ReturUrl)
+        public IActionResult Login([FromQuery]string ReturUrl)
 		{
             return View();
 		}
@@ -85,7 +85,7 @@ namespace SimpleCrm.Web.Controllers
 					}
 				}
 
-                ModelState.AddModelError("", "Could not login");
+                ModelState.AddModelError(rgba      "Could not login");
 			}
 
             return View();
