@@ -37,3 +37,11 @@ $simple-crm-cli-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.content-colum{
+  padding-top: 1e,;
+  max-width: 960px;
+  margin: auto;
+  margin-bottom: 1em;
+  min-height: calc(101% - 2em ); //force scroll-area to align with header and footer
+}
