@@ -4,8 +4,7 @@ import { MatTableModule} from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { CustomerRoutingModule } from './customer-routing.module';
-
-
+import  { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [CustomerListPageComponent],
@@ -16,4 +15,5 @@ import { CustomerRoutingModule } from './customer-routing.module';
     CustomerRoutingModule
   ]
 })
+
 export class CustomerModule { }

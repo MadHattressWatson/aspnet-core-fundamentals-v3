@@ -6,7 +6,7 @@ export type InteractionMethod = 'phone' | 'email';
     lastName: string;
     phoneNumber: string;
     emailAddress: string;
-    preferredContactMethod: InteractionMethod;
     statusCode: string;
+    preferredContactMethod: InteractionMethod;
     lastContactDate: string; // ISO format date
   }

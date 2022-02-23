@@ -7,9 +7,9 @@ import { Customer } from '../customer.model';
   selector: 'crm-customer-list-page',
   templateUrl: './customer-list-page.component.html',
   styleUrls: ['./customer-list-page.component.scss']
+
 })
 export class CustomerListPageComponent implements OnInit {
-
   customers: Customer[] = [
     {
       customerId: 1,
@@ -32,12 +32,12 @@ export class CustomerListPageComponent implements OnInit {
       lastContactDate: new Date().toISOString()
     }
   ];
-  dataSource!: MatTableDataSource<Customer>; // The ! tells Angular you know it may be used before it is set.  Try it without to see the error
+  dataSource: MatTableDataSource<Customer>;
   displayColumns = ['name', 'phone', 'email', 'status'];
 
   constructor() { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.customers);
-    }
   }
+}
