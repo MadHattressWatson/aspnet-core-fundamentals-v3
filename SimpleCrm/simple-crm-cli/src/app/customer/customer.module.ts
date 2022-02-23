@@ -18,8 +18,8 @@ import { CustomerMockService } from './customer-mock.service';
 ],
   providers: [
     {
-      provide: CustomerService,
-      useClass: CustomerMockService
+      provide: CustomerService, //the base class requested bu components
+      useClass: CustomerMockService //the derived type to be injected instead.
     }
   ]
 })
