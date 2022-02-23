@@ -7,13 +7,24 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import  { HttpClientModule } from '@angular/common/http';
 import { CustomerService } from './customer.service';
 import { CustomerMockService } from './customer-mock.service';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CustomerCreateDialogComponent } from './customer-create-dialog/customer-create-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';import { MatIconModule } from '@angular/material/icon';
+
+
 
 @NgModule({
-  declarations: [CustomerListPageComponent],
+  declarations: [CustomerListPageComponent, CustomerCreateDialogComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     MatCardModule,
     MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    FlexLayoutModule,
     CustomerRoutingModule
 ],
   providers: [
