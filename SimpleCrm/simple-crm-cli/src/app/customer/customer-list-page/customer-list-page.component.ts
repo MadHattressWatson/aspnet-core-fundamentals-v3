@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../customer.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { Customer } from '../customer.model';
+
 
 @Component({
   selector: 'crm-customer-list-page',

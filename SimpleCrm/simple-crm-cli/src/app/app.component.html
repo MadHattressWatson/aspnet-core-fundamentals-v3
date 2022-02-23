@@ -1,13 +1,9 @@
-<mat-toolbar color="primary">
-{{title}}
-</mat-toolbar>
-
 <div style="height:100vh; display:flex; flex-direction:column;">
   <mat-toolbar color="primary">
     <button mat-icon-button matRipple (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    Simple CRM
+    {{title}}
   </mat-toolbar>
   <mat-sidenav-container style="flex:1 100%">
     <mat-sidenav #sidenav [opened]="true" [mode]="'side'">
@@ -18,13 +14,13 @@
           <h4 matLine>Customers</h4>
         </a>
         <a mat-list-item matRipple [style.position]="'relative'"
-          routerLinkActive="selected" [routerLink]="['./Pipeline']">
+          routerLinkActive="selected" [routerLink]="['.']">
           <mat-icon matListIcon>chat</mat-icon>
           <h4 matLine>Pipeline</h4>
         </a>
       </mat-nav-list>
     </mat-sidenav>
- 
+
     <router-outlet></router-outlet>
     <button (click)="sidenav.toggle()">Toggle</button>
   </mat-sidenav-container>
