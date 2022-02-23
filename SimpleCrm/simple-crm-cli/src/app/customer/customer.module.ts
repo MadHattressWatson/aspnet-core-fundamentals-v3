@@ -18,7 +18,7 @@ import { CustomerMockService } from './customer-mock.service';
 ],
   providers: [
     {
-      provider: CustomerService,
+      provide: CustomerService,
       useClass: CustomerMockService
     }
   ]
