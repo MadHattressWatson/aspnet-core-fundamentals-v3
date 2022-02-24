@@ -31,7 +31,7 @@ export class CustomerMockService extends CustomerService {
     this.lastCustomerId = Math.max(...this.customers.map(x => x.customerId));
   }
 
-  search(term: string): Observable<Customer[]> {
+  override search(term: string): Observable<Customer[]> {
     const items = this.customers.filter(x =>
       (x.firstName + ' ' + x.lastName).indexOf(term) >= 0
       || x.phoneNumber.indexOf(term) >= 0
@@ -40,7 +40,7 @@ export class CustomerMockService extends CustomerService {
     return of(items);
   }
 
-  insert(customer: Customer): Observable<Customer> {
+  override insert(customer: Customer): Observable<Customer> {
     customer.customerId = Math.max(...this.customers.map(x => x.customerId));
     this.customers = [...this.customers, customer];
     localStorage.setItem('customers', JSON.stringify(this.customers));
@@ -48,7 +48,7 @@ export class CustomerMockService extends CustomerService {
     return of(customer);
   }
 
-update(customer: Customer): Observable<Customer> {
+ override update(customer: Customer): Observable<Customer> {
     const match = this.customers.find(x => x.customerId === customer.customerId);
     if (match) {
       // replace the matched item, keep other items unchanged
