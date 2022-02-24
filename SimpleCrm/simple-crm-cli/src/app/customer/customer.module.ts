@@ -15,8 +15,9 @@ import { CustomerCreateDialogComponent } from './customer-create-dialog/customer
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 @NgModule({
-  declarations: [CustomerListPageComponent, CustomerCreateDialogComponent],
+  declarations: [CustomerListPageComponent, CustomerCreateDialogComponent, CustomerDetailComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

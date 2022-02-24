@@ -7,6 +7,7 @@ import { CustomerCreateDialogComponent } from '../customer-create-dialog/custome
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'crm-customer-list-page',
   templateUrl: './customer-list-page.component.html',
@@ -14,11 +15,11 @@ import { Router } from '@angular/router';
 })
 export class CustomerListPageComponent implements OnInit {
   customers$: Observable<Customer[]>;
-  displayColumns = ['name', 'phone', 'email', 'status'];
-  router: any;
+  displayColumns = ['name', 'phone', 'email', 'status', 'actions'];
 
   constructor(
     private customerService: CustomerService,
+    private route: Router,
     public dialog: MatDialog
     ) {
     this.customers$ = this.customerService.search('');
