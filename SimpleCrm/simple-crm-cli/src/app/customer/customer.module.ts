@@ -14,7 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CustomerCreateDialogComponent } from './customer-create-dialog/customer-create-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [CustomerListPageComponent, CustomerCreateDialogComponent],
   imports: [
@@ -26,7 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    MatInputModule,
+    MatSelectModule,
     FlexLayoutModule,
     CustomerRoutingModule
 ],
