@@ -1,13 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Customer } from '../customer.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 
 @Component({
   selector: 'crm-customer-create-dialog',
   templateUrl: './customer-create-dialog.component.html',
   styleUrls: ['./customer-create-dialog.component.scss']
 })
+
 export class CustomerCreateDialogComponent implements OnInit {
   detailForm: FormGroup;
 
@@ -17,10 +18,10 @@ export class CustomerCreateDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Customer | null
   ) {
     this.detailForm = this.fb.group({
-      firstName: [''], // target form field name is the property name
-      lastName: [''],
+      firstName: ['', Validators.required], // target form field name is the property name
+      lastName: ['', Validators.required],
       phoneNumber: [''],
-      emailAddress: [''],
+      emailAddress: ['', Validators.required, Validators.email],
       preferredContactMethod: ['email'] // value in the quotes is the initial value
    });
     if (this.data) { // ensure the object has a value first
@@ -33,13 +34,15 @@ export class CustomerCreateDialogComponent implements OnInit {
   }
 
   cancel(): void {
-    // TODO: close this dialog
+
     this.dialogRef.close();
   }
 
   save(): void {
-    // TODO: get form data and return to parent component
-    const customer = {};
+    if (!this.detailForm.valid){
+      return;
+    }
+    const customer = {...this.data, ...this.detailForm.value };
     this.dialogRef.close(customer);
   }
 }
