@@ -16,7 +16,7 @@ export class CustomerMockService extends CustomerService {
     const localCustomers = localStorage.getItem('customers');
     if(localCustomers){
       this.customers = JSON.parse(localCustomers);
-    } else{
+    } else {
       this.customers.push({
         customerId: 1,
         firstName: 'Tory',
@@ -40,16 +40,24 @@ export class CustomerMockService extends CustomerService {
     return of(items);
   }
 
+  override get(customerId: number): Observable<Customer> {
+    const item = this.customers.find(x =>
+      x.customerId == customerId);
+      return of(item);
+  }
+
   override insert(customer: Customer): Observable<Customer> {
     customer.customerId = Math.max(...this.customers.map(x => x.customerId));
     this.customers = [...this.customers, customer];
     localStorage.setItem('customers', JSON.stringify(this.customers));
+
     // convert a result instance into an observable of the array to meet the function signature
     return of(customer);
   }
 
  override update(customer: Customer): Observable<Customer> {
     const match = this.customers.find(x => x.customerId === customer.customerId);
+
     if (match) {
       // replace the matched item, keep other items unchanged
       this.customers = this.customers
@@ -61,5 +69,9 @@ export class CustomerMockService extends CustomerService {
     // convert a result instance into an observable of the array to meet the function signature
     return of(customer);
   }
+}
+
+function item(item: any): Observable<Customer> {
+  throw new Error('Function not implemented.');
 }
 

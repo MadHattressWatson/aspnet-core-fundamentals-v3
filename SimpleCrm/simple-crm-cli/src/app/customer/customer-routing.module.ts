@@ -11,7 +11,7 @@ const routes: Routes = [
     component: CustomerListPageComponent
   },
   {
-    path: 'customers',
+    path: 'customer/:Id',
     pathMatch: 'full',
     component: CustomerDetailComponent
   }
