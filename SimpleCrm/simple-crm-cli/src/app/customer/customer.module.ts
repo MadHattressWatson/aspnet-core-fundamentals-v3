@@ -5,7 +5,7 @@ import { MatTableModule} from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { CustomerRoutingModule } from './customer-routing.module';
-import  { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CustomerService } from './customer.service';
 import { CustomerMockService } from './customer-mock.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +15,7 @@ import { CustomerCreateDialogComponent } from './customer-create-dialog/customer
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 @NgModule({
   declarations: [CustomerListPageComponent, CustomerCreateDialogComponent, CustomerDetailComponent],
@@ -28,6 +29,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     MatButtonModule,
     MatDialogModule,
     MatSelectModule,
+    MatSnackBar,
     FlexLayoutModule,
     CustomerRoutingModule
 ],

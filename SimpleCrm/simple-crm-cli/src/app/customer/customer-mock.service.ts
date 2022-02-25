@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Customer } from './customer.model';
 import { CustomerService } from './customer.service';
 
+
 @Injectable()
 export class CustomerMockService extends CustomerService {
   customers: Customer[] = [];
@@ -43,7 +44,7 @@ export class CustomerMockService extends CustomerService {
   override get(customerId: number): Observable<Customer> {
     const item = this.customers.find(x =>
       x.customerId == customerId);
-      return of(item);
+    return of(item);
   }
 
   override insert(customer: Customer): Observable<Customer> {
