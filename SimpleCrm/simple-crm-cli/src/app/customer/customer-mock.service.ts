@@ -41,7 +41,7 @@ export class CustomerMockService extends CustomerService {
     return of(items);
   }
 
-  override get(customerId: number): Observable<Customer> {
+  override get(customerId: number): Observable<Customer |undefined> {
     const item = this.customers.find(x =>
       x.customerId == customerId);
     return of(item);

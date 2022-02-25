@@ -4,9 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { CustomerService } from '../customer.service';
 import { Observable } from 'rxjs';
 import { CustomerCreateDialogComponent } from '../customer-create-dialog/customer-create-dialog.component';
-import { Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'crm-customer-list-page',
@@ -15,13 +12,12 @@ import { Router } from '@angular/router';
 })
 export class CustomerListPageComponent implements OnInit {
   customers$: Observable<Customer[]>;
-  displayColumns = ['name', 'phone', 'email', 'status', 'actions'];
+  displayColumns = [ 'icon', 'name', 'phone', 'email', 'status'];
 
   constructor(
     private customerService: CustomerService,
-    private route: Router,
     public dialog: MatDialog
-    ) {
+  ) {
     this.customers$ = this.customerService.search('');
   }
 

@@ -15,10 +15,17 @@ import { CustomerCreateDialogComponent } from './customer-create-dialog/customer
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { StatusIconPipe } from './status-icon.pipe';
 @NgModule({
-  declarations: [CustomerListPageComponent, CustomerCreateDialogComponent, CustomerDetailComponent],
+  declarations: [
+    CustomerListPageComponent,
+    CustomerCreateDialogComponent,
+    CustomerDetailComponent,
+    StatusIconPipe
+  ],
+
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -28,11 +35,12 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
+    MatInputModule,
     MatSelectModule,
-    MatSnackBar,
+    MatSnackBarModule,
     FlexLayoutModule,
     CustomerRoutingModule
-],
+  ],
   providers: [
     {
       provide: CustomerService, //the base class requested bu components
@@ -40,5 +48,4 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     }
   ]
 })
-
 export class CustomerModule { }

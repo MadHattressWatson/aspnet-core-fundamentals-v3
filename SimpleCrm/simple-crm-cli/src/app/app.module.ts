@@ -10,13 +10,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { CustomerModule } from './customer/customer.module';
+import { AppIconsService } from './shared/app-icons.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,7 +29,9 @@ import { CustomerModule } from './customer/customer.module';
     MatListModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [AppIconsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(iconService: AppIconsService) {}
+}

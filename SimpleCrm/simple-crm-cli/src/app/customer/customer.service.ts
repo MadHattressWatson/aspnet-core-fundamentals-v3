@@ -13,7 +13,7 @@ export class CustomerService {
   search(term: string): Observable<Customer[]> {
     return this.http.get<Customer[]>('/api/customer/search?term=' + term);
 }
-get(customerId: number): Observable<Customer> {
+get(customerId: number): Observable<Customer|undefined> {
   return this.http.get<Customer>('/api/customer/' + customerId);
 }
   insert(customer: Customer): Observable<Customer> {
