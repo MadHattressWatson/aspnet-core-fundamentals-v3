@@ -12,7 +12,7 @@ import { CustomerCreateDialogComponent } from '../customer-create-dialog/custome
 })
 export class CustomerListPageComponent implements OnInit {
   customers$: Observable<Customer[]>;
-  displayColumns = [ 'icon', 'name', 'phone', 'email', 'status'];
+  displayColumns = [ 'icon', 'name', 'phone', 'email', 'status', 'actions'];
 
   constructor(
     private customerService: CustomerService,

@@ -20,7 +20,7 @@ get(customerId: number): Observable<Customer|undefined> {
     return this.http.post<Customer>('/api/customer', customer);
 }
   update(customer: Customer): Observable<Customer> {
-    // example url: /api/customer/5
+    
     return this.http.put<Customer>(`/api/customer/${customer.customerId}`, customer);
   }
 }

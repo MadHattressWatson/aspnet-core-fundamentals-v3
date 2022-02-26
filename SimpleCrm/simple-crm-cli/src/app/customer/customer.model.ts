@@ -1,3 +1,5 @@
+import { TitleCasePipe } from "@angular/common";
+
 export type InteractionMethod = 'phone' | 'email';
 
   export interface Customer {
@@ -8,5 +10,5 @@ export type InteractionMethod = 'phone' | 'email';
     emailAddress: string;
     statusCode: string;
     preferredContactMethod: InteractionMethod;
-    lastContactDate: string; // ISO format date
+    lastContactDate: string;
   }
