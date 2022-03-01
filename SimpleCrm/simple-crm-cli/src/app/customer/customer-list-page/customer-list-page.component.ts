@@ -19,6 +19,7 @@ export class CustomerListPageComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.customers$ = this.customerService.search('');
+
   }
 
   ngOnInit(): void {

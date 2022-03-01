@@ -5,11 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StatusIconPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    if ( value === 'Prospect') {
+  transform(value: string, ...args: unknown[]): unknown {
+    value = value ||'';
+    if ( value.search(/prospectr/i) ===0) {
       return 'online'
     }
-    if ( value === 'Purchased'){
+    if ( value.search(/purchased/i) === 0){
       return 'money';
     }
     return 'users'
