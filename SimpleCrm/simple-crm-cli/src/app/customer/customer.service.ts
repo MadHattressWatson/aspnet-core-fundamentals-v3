@@ -3,10 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Customer } from './customer.model';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CustomerService {
+@Injectable()
+  export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +18,7 @@ get(customerId: number): Observable<Customer|undefined> {
     return this.http.post<Customer>('/api/customer', customer);
 }
   update(customer: Customer): Observable<Customer> {
-    
+
     return this.http.put<Customer>(`/api/customer/${customer.customerId}`, customer);
   }
 }

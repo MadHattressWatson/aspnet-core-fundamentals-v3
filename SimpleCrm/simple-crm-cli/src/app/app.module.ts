@@ -11,7 +11,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { CustomerModule } from './customer/customer.module';
 import { AppIconsService } from './shared/app-icons.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +25,8 @@ import { AppIconsService } from './shared/app-icons.service';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+
   ],
   providers: [AppIconsService],
   bootstrap: [AppComponent]
