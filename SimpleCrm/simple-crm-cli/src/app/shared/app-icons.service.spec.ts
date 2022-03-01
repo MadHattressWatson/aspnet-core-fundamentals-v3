@@ -10,7 +10,7 @@ describe('AppIconsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule ],
+        imports: [ HttpClientTestingModule ],
         providers: [ AppIconsService ]
     });
       injector = getTestBed();
