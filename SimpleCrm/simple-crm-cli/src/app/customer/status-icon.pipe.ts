@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StatusIconPipe implements PipeTransform {
 
-  transform(value: string, ...args: unknown[]): unknown {
+  transform(value: string, ...args: unknown[]): string {
     value = value ||'';
     if ( value.search(/prospectr/i) ===0) {
       return 'online'
