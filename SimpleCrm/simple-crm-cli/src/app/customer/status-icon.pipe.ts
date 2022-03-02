@@ -1,19 +1,24 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { TestBed, getTestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-@Pipe({
-  name: 'statusIcon'
-})
-export class StatusIconPipe implements PipeTransform {
+import { AppIconsService } from './app-icons.service';
 
-  transform(value: string, ...args: unknown[]): string {
-    value = value ||'';
-    if ( value.search(/prospectr/i) ===0) {
-      return 'online'
-    }
-    if ( value.search(/purchased/i) === 0){
-      return 'money';
-    }
-    return 'users'
-  }
+describe('AppIconsService', () => {
+  let injector: TestBed;
+  let service: AppIconsService;
+  let httpMock: HttpTestingController;
 
-}
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+        imports: [ HttpClientTestingModule ],
+        providers: [ AppIconsService ]
+    });
+      injector = getTestBed();
+      service = injector.inject(AppIconsService);
+      httpMock = injector.inject(HttpTestingController);
+    });
+
+   it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
