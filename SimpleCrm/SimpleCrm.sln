@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCrm.Web", "SimpleCrm.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCrm", "SimpleCrm\SimpleCrm.csproj", "{124B1125-96AC-4661-9533-766C8F8D5593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCrm.SqlDbServices", "SimpleCrm.SqlDbServices\SimpleCrm.SqlDbServices.csproj", "{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCrm.SqlDbServices", "SimpleCrm.SqlDbServices\SimpleCrm.SqlDbServices.csproj", "{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCrm.WebApi", "SimpleCrm.WebApi\SimpleCrm.WebApi.csproj", "{EBB27193-3C18-46D0-9DD7-3D27AFEAAE1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD4DFBD5-BDBA-4376-8D80-2D8CDD52568F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBB27193-3C18-46D0-9DD7-3D27AFEAAE1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBB27193-3C18-46D0-9DD7-3D27AFEAAE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBB27193-3C18-46D0-9DD7-3D27AFEAAE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBB27193-3C18-46D0-9DD7-3D27AFEAAE1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

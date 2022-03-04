@@ -20,6 +20,7 @@ namespace SimpleCrm
         
         public string PhoneNumber { get; set; }
 
+        [MaxLength(400)]
         public string EmailAddress { get; set; }
 
         public CustomerType Type { get; set; }

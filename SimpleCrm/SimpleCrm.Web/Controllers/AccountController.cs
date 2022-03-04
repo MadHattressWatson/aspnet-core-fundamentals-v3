@@ -85,7 +85,7 @@ namespace SimpleCrm.Web.Controllers
 					}
 				}
 
-                ModelState.AddModelError(rgba      "Could not login");
+                ModelState.AddModelError("", "Could not login");
 			}
 
             return View();
