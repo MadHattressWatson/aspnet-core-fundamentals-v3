@@ -5,7 +5,7 @@ namespace SimpleCrm
 {
     public class InMemoryCustomerData : ICustomerData
     {
-        static readonly IList<Customer> _customers;
+        static readonly IList<Customer> _customers; //not thread safe-okay in development, single user scenerio only 
 
         static InMemoryCustomerData()
         {
@@ -27,7 +27,15 @@ namespace SimpleCrm
         {
             return _customers;
         }
-        public void Add(Customer customer)
+        public List<Customer> GetByStatus(CustomerStatus status, int pageIndex, int take, string orderBy)
+        {
+             return _customers.Where(x => x.Status == status)
+                .Skip(pageIndex * take)
+                .Take(take)
+                 // no ordering yet
+                .ToList();
+        }
+    public void Add(Customer customer)
         {
             customer.Id = _customers.Max(x => x.Id) + 1;
             _customers.Add(customer);
@@ -40,7 +48,7 @@ namespace SimpleCrm
         }
         public void Commit()
         {
-            //support
+            //transaction support
         }
     }
 }

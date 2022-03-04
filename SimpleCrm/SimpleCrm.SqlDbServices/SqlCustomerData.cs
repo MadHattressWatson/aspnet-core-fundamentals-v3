@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SimpleCrm.SqlDbServices
 {
-    public class SqlCustomerData: ICustomerData
+    public class SqlCustomerData : ICustomerData
     {
         private readonly SimpleCrmDbContext _context;
         public SqlCustomerData(SimpleCrmDbContext context)
@@ -24,11 +24,12 @@ namespace SimpleCrm.SqlDbServices
             
         }
         public void Update(Customer customer)
-        {                      
+        {         
+             //update is not currently needed here
         }
         public void Commit()
         {
-            throw new System .NotImplementedException();
+            _context.SaveChanges();
         }
 
     }
