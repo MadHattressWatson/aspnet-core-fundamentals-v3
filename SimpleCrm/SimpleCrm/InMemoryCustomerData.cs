@@ -5,7 +5,7 @@ namespace SimpleCrm
 {
     public class InMemoryCustomerData : ICustomerData
     {
-        static readonly IList<Customer> _customers; //not thread safe-okay in development, single user scenerio only 
+        static IList<Customer> _customers; //not thread safe-okay in development, single user scenerio only 
 
         static InMemoryCustomerData()
         {
