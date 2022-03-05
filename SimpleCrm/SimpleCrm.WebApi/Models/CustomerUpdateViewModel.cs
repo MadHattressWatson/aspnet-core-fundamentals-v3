@@ -1,6 +1,6 @@
 ﻿namespace SimpleCrm.WebApi.Models
 {
-    public class CustomerCreateViewModel
+    public class CustomerUpdateViewModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -9,4 +9,3 @@
         public InteractionMethod PreferredContactMethod { get; set; }
     }
 }
-    
