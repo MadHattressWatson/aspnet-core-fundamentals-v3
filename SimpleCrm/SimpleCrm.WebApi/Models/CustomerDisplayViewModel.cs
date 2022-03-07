@@ -2,6 +2,13 @@
 {
     public class CustomerDisplayViewModel
     {
+        private Customer c;
+
+        public CustomerDisplayViewModel(Customer c)
+        {
+            this.c = c;
+        }
+
         public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

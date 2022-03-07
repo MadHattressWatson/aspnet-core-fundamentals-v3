@@ -37,6 +37,12 @@ namespace SimpleCrm.SqlDbServices
                 if (!sortableFields.Contains(x))
                     throw new ArgumentException("Invalid sort field " + x);
             } //all sort requested fields are valid.
+            if (String.IsNullOrWhiteSpace(orderBy))
+            {
+                orderBy = "LastName asc, firstname asc";
+            } //all sortr requested fields are valid.
+            if (String.IsNullOrEmpty(orderBy))
+                
             return _context.Customers
                 
                 .OrderBy(orderBy) //validated above to nothing unexpected, this is OK now

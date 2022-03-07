@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using SimpleCrm.WebApi.Models;
 using System.Linq;
+using SimpleCrm.WebApi.Filters;
+
 
 namespace SimpleCrm.WebApi.ApiControllers
+
+
 {
     [Route("api/customers")]
     public class CustomerController : Controller
@@ -21,10 +24,11 @@ namespace SimpleCrm.WebApi.ApiControllers
         /// <returns></returns>
          
         
-        [HttpGet("")] // ./api/customers
+        [HttpGet("")] //  ./api/customers
         public IActionResult GetAll()
         {
-            var models = customer.Select(c => new CustomerDisplayViewModel(c));
+            var customers = _customerData.GetAll(0, 50, "");
+            var models = customers.Select(c => new CustomerDisplayViewModel(c));
             return Ok(models); 
         }
         /// <summary>
@@ -42,7 +46,7 @@ namespace SimpleCrm.WebApi.ApiControllers
             }
 
             var model = new CustomerDisplayViewModel(customer);
-            return Ok(customer); // 200
+            return Ok(model); 
         }
         [HttpPost("")] //  ./api/customers
         public IActionResult Create([FromBody] CustomerCreateViewModel model)
@@ -50,6 +54,11 @@ namespace SimpleCrm.WebApi.ApiControllers
             if (model == null)
             {
                 return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return new ValidationFailedResult(ModelState);
             }
 
             var customer = new Customer
@@ -63,7 +72,7 @@ namespace SimpleCrm.WebApi.ApiControllers
 
             _customerData.Add(customer);
             _customerData.Commit();
-            return Ok(new CustomerDisplayViewModel(customer); //includes new auto-assigned id
+            return Ok(new CustomerDisplayViewModel(customer)); //includes new auto-assigned id
         }
         [HttpPut("{id}")] //  ./api/customers/:id
         public IActionResult Update(int id, [FromBody] CustomerUpdateViewModel model)
@@ -71,6 +80,11 @@ namespace SimpleCrm.WebApi.ApiControllers
             if (model == null)
             {
                 return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return new ValidationFailedResult(ModelState);
             }
 
             var customer = _customerData.Get(id);
@@ -85,12 +99,11 @@ namespace SimpleCrm.WebApi.ApiControllers
             customer.LastName = model.LastName;
             customer.PhoneNumber = model.PhoneNumber;
             customer.PreferredContactMethod = model.PreferredContactMethod;
-            customer.Status = model.Status;
-            //customer.LastContactDate = model.LastContactDate;
+            
 
             _customerData.Update(customer);
             _customerData.Commit();
-            return Ok(new CustomerDisplayViewModel); //server version, updated per request
+            return Ok(new CustomerDisplayViewModel(customer)); //server version, updated per request
         }
         [HttpDelete("{id}")] //  ./api/customers/:id
         public IActionResult Delete(int id)
