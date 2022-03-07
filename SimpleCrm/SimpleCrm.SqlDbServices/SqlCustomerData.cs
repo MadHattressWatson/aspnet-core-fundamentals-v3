@@ -22,8 +22,7 @@ namespace SimpleCrm.SqlDbServices
         }
         public List<Customer> GetAll(int pageIndex, int take, string orderBy)
         {
-            //lastname asc
-            //lastname asc, firstname desc
+            
             var sortableFields = new string[] { "FIRSTNAME", "LASTNAME", "EMAILADDRESS", "PHONENUMBER", "STATUS", "LASTCONTACTDATE" };
             var fields = (orderBy ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var field in fields)
@@ -40,8 +39,8 @@ namespace SimpleCrm.SqlDbServices
             if (String.IsNullOrWhiteSpace(orderBy))
             {
                 orderBy = "LastName asc, firstname asc";
-            } //all sortr requested fields are valid.
-            if (String.IsNullOrEmpty(orderBy))
+            } 
+            
                 
             return _context.Customers
                 
