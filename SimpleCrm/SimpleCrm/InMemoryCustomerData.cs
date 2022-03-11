@@ -16,20 +16,20 @@ namespace SimpleCrm
                       new Customer { Id =3, FirstName ="Mike", LastName = "Doe", PhoneNumber = "555-555-8547" },
                       new Customer { Id =4, FirstName ="Karen", LastName = "Jamieson", PhoneNumber = "555-555-9134" },
                       new Customer { Id =5, FirstName ="James", LastName = "Dean", PhoneNumber = "555-555-7245" },
-                      new Customer { Id =6, FirstName ="Michelle", LastName = "Leary", PhoneNumber = "555-555-3457" }
-                  };
+                      new Customer { Id =6, FirstName ="Michelle", LastName = "Leary", PhoneNumber = "555-555-3457" },
+                   };
         }
         public Customer Get(int id)
         {
             return _customers.FirstOrDefault(x => x.Id == id);
         }
-        public IEnumerable<Customer> GetAll()
+        public List<Customer> GetAll(CustomerListParameters listParameters)
         {
-            return _customers;
+            return _customers.ToList();
         }
         public List<Customer> GetAll(int pageIndex, int take, string orderBy)
         {
-             return _customers
+            return _customers
                 .Skip(pageIndex * take)
                 .Take(take)
                  // no ordering yet
