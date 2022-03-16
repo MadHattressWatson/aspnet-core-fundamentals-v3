@@ -15,7 +15,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SpaServices;
 using Microsoft.AspNetCore.SpaServices.Extensions;
-using FluentAssertions.Common;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace SimpleCrm.WebApi
@@ -75,6 +74,7 @@ namespace SimpleCrm.WebApi
 
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
