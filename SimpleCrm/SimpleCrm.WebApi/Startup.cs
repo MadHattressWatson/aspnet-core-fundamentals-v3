@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleCrm.SqlDbServices;
-using SimpleCrm.WebApi.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +33,14 @@ namespace SimpleCrm.WebApi
             services.AddDbContext<SimpleCrmDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SimpleCrmConnection")));
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<CrmIdentityDbContextt>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SimpleCrmConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<CrmUser>()
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<CrmIdentityDbContextt>();
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSpaStaticFiles(config =>
