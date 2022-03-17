@@ -50,7 +50,7 @@ namespace SimpleCrm.WebApi
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<CrmIdentityDbContext>();
 
-            Microsoft.AspNetCore.Authentication.AuthenticationBuilder authenticationBuilder = services.AddAuthentication()
+            services.AddAuthentication()
               .AddCookie(cfg => cfg.SlidingExpiration = true)
               .AddGoogle(options =>
               {
@@ -97,7 +97,7 @@ namespace SimpleCrm.WebApi
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action}/{id?}");
                 endpoints.MapRazorPages();
             });
             app.UseWhen(

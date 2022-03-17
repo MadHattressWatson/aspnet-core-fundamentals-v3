@@ -2,7 +2,7 @@
     color: #fff;
     text-shadow: 2px 2px 4px #000000;
     height: 300px;
-    background: url('../SimpleCrm/SimpleCrm.WebApi/wwwroot/css/showcase.jpg') center / cover;
+    background: url('/css/showcase.jpg') center / cover;
 }
 
 .hero-wide.mdl-card > .mdl-card__title h2 {
