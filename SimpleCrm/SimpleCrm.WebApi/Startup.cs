@@ -12,8 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.SpaServices;
-using Microsoft.AspNetCore.SpaServices.Extensions;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using SimpleCrm.WebApi.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -25,7 +23,7 @@ namespace SimpleCrm.WebApi
     public class Startup
     {
         private const string SecretKey = "Iambatmansadlfkjhsadflkj3087u4we38ru4";
-        private readonly SymmetricSecurityKey_signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
+        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -43,12 +41,12 @@ namespace SimpleCrm.WebApi
                 options.ClientId = googleOptions[nameof(GoogleAuthSettings.ClientId)];
                 options.ClientSecret = googleOptions[nameof(GoogleAuthSettings.ClientSecret)];
             });
-            var microsoftOptions = Configuration.GetSection(nameof(MicrosoftAuthSettings));
-            services.Configure<MicrosoftAuthSettings>(options =>
-            {
-                options.ClientId = googleOptions[nameof(MicrosoftAuthSettings.ClientId)];
-                options.ClientSecret = googleOptions[nameof(MicrosoftAuthSettings.ClientSecret)];
-            });
+            //var microsoftOptions = Configuration.GetSection(nameof(MicrosoftAuthSettings));
+            //services.Configure<MicrosoftAuthSettings>(options =>
+            //{
+            //    options.ClientId = googleOptions[nameof(MicrosoftAuthSettings.ClientId)];
+            //    options.ClientSecret = googleOptions[nameof(MicrosoftAuthSettings.ClientSecret)];
+            //});
 
             services.AddDbContext<SimpleCrmDbContext>(options =>
                 options.UseSqlServer(
@@ -63,8 +61,9 @@ namespace SimpleCrm.WebApi
             {
                 options.Issuer = jwtOptions[nameof(JwtIssuerOptions.Issuer)];
                 options.Audience = jwtOptions[nameof(JwtIssuerOptions.Audience)];
-                options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms./*HmacSha256*/);
-            }
+                options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
+            });
+
             var tokenValidationPrms = new TokenValidationParameters
             {
                 ValidateIssuer = true,
@@ -77,7 +76,7 @@ namespace SimpleCrm.WebApi
                 ValidateLifetime = true,
                 ClockSkew = TimeSpan.Zero
             };
-                services.AddAuthentication(options =>
+            services.AddAuthentication(options =>
                 {   //tells ASP.Net Identity the application is using JWT
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -88,12 +87,12 @@ namespace SimpleCrm.WebApi
                     configureOptions.TokenValidationParameters = tokenValidationPrms;
                     configureOptions.SaveToken = true; // allows token access in controller
                 });
-                services.AddAuthorization(options =>
-                {
-                    options.AddPolicy("ApiUser", policy => policy.RequireClaim(
-                    Constants.JwtClaimIdentifiers.Rol,
-                    Constants.JwtClaims.ApiAccess
-                }
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiUser", policy => policy.RequireClaim(
+                Constants.JwtClaimIdentifiers.Rol,
+                Constants.JwtClaims.ApiAccess));
+            });
 
                 var identityBuilder = services.AddIdentityCore<CrmUser>(o =>
                 {
@@ -116,9 +115,9 @@ namespace SimpleCrm.WebApi
                     config.RootPath = Configuration["SpaRoot"];
                 });
 
-                services.AddSingleton<IJwttFactory>();
+                services.AddSingleton<IJwtFactory>();
                 services.AddScoped<ICustomerData, SqlCustomerData>();
-            });
+            }
 
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -163,6 +162,6 @@ namespace SimpleCrm.WebApi
                       }
                   }));
             }
-        }
+        
     }
 }
