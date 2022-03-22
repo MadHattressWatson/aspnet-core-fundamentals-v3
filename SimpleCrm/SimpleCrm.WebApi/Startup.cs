@@ -48,6 +48,7 @@ namespace SimpleCrm.WebApi
                 options.ClientSecret = googleOptions[nameof(MicrosoftAuthSettings.ClientSecret)];
             });
 
+            services.AddResponseCaching();
             services.AddDbContext<SimpleCrmDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SimpleCrmConnection")));
@@ -134,6 +135,7 @@ namespace SimpleCrm.WebApi
                     app.UseHsts();
                 }
                 app.UseHttpsRedirection();
+                app.UseResponseCaching();
                 app.UseStaticFiles();
                 app.UseSpaStaticFiles();
 

@@ -18,19 +18,19 @@ namespace SimpleCrm.WebApi.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any)]
+        [ResponseCache(Duration = 31, Location = ResponseCacheLocation.Client)]
         [Route("privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
-        [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any)]
+        [ResponseCache(Duration = 31, Location = ResponseCacheLocation.Client)]
         [Route("corporate")]
         public IActionResult CorporateClients()
         {
             return View();
         }
-        [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any)]
+        [ResponseCache(Duration = 31, Location = ResponseCacheLocation.Client)]
         [Route("pricing")]
         public IActionResult Pricing()
         {
