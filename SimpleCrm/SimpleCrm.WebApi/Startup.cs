@@ -41,12 +41,12 @@ namespace SimpleCrm.WebApi
                 options.ClientId = googleOptions[nameof(GoogleAuthSettings.ClientId)];
                 options.ClientSecret = googleOptions[nameof(GoogleAuthSettings.ClientSecret)];
             });
-            //var microsoftOptions = Configuration.GetSection(nameof(MicrosoftAuthSettings));
-            //services.Configure<MicrosoftAuthSettings>(options =>
-            //{
-            //    options.ClientId = googleOptions[nameof(MicrosoftAuthSettings.ClientId)];
-            //    options.ClientSecret = googleOptions[nameof(MicrosoftAuthSettings.ClientSecret)];
-            //});
+            var microsoftOptions = Configuration.GetSection(nameof(MicrosoftAuthSettings));
+            services.Configure<MicrosoftAuthSettings>(options =>
+            {
+                options.ClientId = googleOptions[nameof(MicrosoftAuthSettings.ClientId)];
+                options.ClientSecret = googleOptions[nameof(MicrosoftAuthSettings.ClientSecret)];
+            });
 
             services.AddDbContext<SimpleCrmDbContext>(options =>
                 options.UseSqlServer(
