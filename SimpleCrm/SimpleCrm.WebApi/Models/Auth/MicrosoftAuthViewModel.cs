@@ -3,7 +3,8 @@
     public class MicrosoftAuthViewModel
     {
        
-        public string ClientId { get; set; }
-        public string ClientSecret { get; set; }
+        public string AccessToken { get; set; }
+        public string State { get; set; }
+        public string BaseHref { get; set; }
     }
 }
