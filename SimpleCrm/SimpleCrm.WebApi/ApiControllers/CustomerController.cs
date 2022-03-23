@@ -5,6 +5,7 @@ using SimpleCrm.WebApi.Filters;
 using Microsoft.AspNetCore.Routing;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using System;
 
 
 namespace SimpleCrm.WebApi.ApiControllers
@@ -18,8 +19,8 @@ namespace SimpleCrm.WebApi.ApiControllers
         private readonly ICustomerData _customerData;
         private readonly LinkGenerator _linkGenerator;
 
-    public CustomerController(ICustomerData customerData,
-            LinkGenerator linkGenerator)
+        public CustomerController(ICustomerData customerData,
+                LinkGenerator linkGenerator)
         {
             _customerData = customerData;
             _linkGenerator = linkGenerator;
@@ -29,11 +30,11 @@ namespace SimpleCrm.WebApi.ApiControllers
         /// Gets all customers visible in the account of the current user
         /// </summary>
         /// <returns></returns>
-         
-        
-        [HttpGet("", Name ="GetCustomers")] //  ./api/customers
+
+
+        [HttpGet("", Name = "GetCustomers")] //  ./api/customers
         [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Client)]
-        public IActionResult GetAll([FromQuery]CustomerListParameters listParameters)
+        public IActionResult GetAll([FromQuery] CustomerListParameters listParameters)
         {
             if (listParameters.Page < 1)
                 return UnprocessableEntity(new ValidationFailedResult("Page must be 1 or greater."));
@@ -50,9 +51,9 @@ namespace SimpleCrm.WebApi.ApiControllers
                 Previous = CreateCustomersResourceUri(listParameters, -1),
                 Next = CreateCustomersResourceUri(listParameters, 1)
             };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(pagination));
+            Response.Headers.Add("ETag", "\"abc\"");
 
-            return Ok(models); 
+            return Ok(models);
         }
 
         private string CreateCustomersResourceUri(CustomerListParameters listParameters, int pageAdjust)
@@ -61,7 +62,8 @@ namespace SimpleCrm.WebApi.ApiControllers
                 return null;
 
 
-            return _linkGenerator.GetPathByName(this.HttpContext, "GetCustomers", values: new{
+            return _linkGenerator.GetPathByName(this.HttpContext, "GetCustomers", values: new
+            {
                 take = listParameters.Take,
                 page = listParameters.Page + pageAdjust,
                 orderBy = listParameters.OrderBy,
@@ -76,16 +78,18 @@ namespace SimpleCrm.WebApi.ApiControllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")] //  ./api/customers/:id
+        [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Client)]
         public IActionResult Get(int id)
         {
             var customer = _customerData.Get(id);
             if (customer == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
+            Response.Headers.Add("ETag", "\"" + customer.LastContactDate.ToString() + "\"");
             var model = new CustomerDisplayViewModel(customer);
-            return Ok(model); 
+            return Ok(model);
         }
         [HttpPost("")] //  ./api/customers
         public IActionResult Create([FromBody] CustomerCreateViewModel model)
@@ -106,11 +110,14 @@ namespace SimpleCrm.WebApi.ApiControllers
                 LastName = model.LastName,
                 EmailAddress = model.EmailAddress,
                 PhoneNumber = model.PhoneNumber,
-                PreferredContactMethod = model.PreferredContactMethod
+                PreferredContactMethod = model.PreferredContactMethod,
+                LastContactDate = DateTime.UtcNow
             };
 
             _customerData.Add(customer);
             _customerData.Commit();
+
+            Response.Headers.Add("ETag", "\"" + customer.LastContactDate.ToString() + "\"");
             return Ok(new CustomerDisplayViewModel(customer)); //includes new auto-assigned id
         }
         [HttpPut("{id}")] //  ./api/customers/:id
@@ -132,13 +139,20 @@ namespace SimpleCrm.WebApi.ApiControllers
                 return NotFound();
             }
 
+            string ifMatch = Request.Headers["If-Match"];
+            if (ifMatch != customer.LastContactDate.ToString())
+            {
+                return StatusCode(422, "Customer has been changed by another user since it was laoded.  Reload and try again.");
+            }
+
             //update only editable properties from model
             customer.EmailAddress = model.EmailAddress;
             customer.FirstName = model.FirstName;
             customer.LastName = model.LastName;
             customer.PhoneNumber = model.PhoneNumber;
             customer.PreferredContactMethod = model.PreferredContactMethod;
-            
+            customer.LastContactDate = DateTime.UtcNow;
+
 
             _customerData.Update(customer);
             _customerData.Commit();
@@ -150,12 +164,12 @@ namespace SimpleCrm.WebApi.ApiControllers
             var customer = _customerData.Get(id);
             if (customer == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             _customerData.Delete(customer);
             _customerData.Commit();
-            return NoContent(); 
+            return NoContent();
         }
     }
 }
