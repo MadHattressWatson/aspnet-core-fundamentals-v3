@@ -17,6 +17,8 @@ using SimpleCrm.WebApi.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using NSwag.Generation.Processors.Security;
+using NSwag;
 
 namespace SimpleCrm.WebApi
 {
@@ -78,16 +80,17 @@ namespace SimpleCrm.WebApi
                 ClockSkew = TimeSpan.Zero
             };
             services.AddAuthentication(options =>
-                {   //tells ASP.Net Identity the application is using JWT
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(configureOptions =>
-                {   //tells ASP.Net to look for Bearer authentication with these options
-                    configureOptions.ClaimsIssuer = jwtOptions[nameof(JwtIssuerOptions.Issuer)];
-                    configureOptions.TokenValidationParameters = tokenValidationPrms;
-                    configureOptions.SaveToken = true; // allows token access in controller
-                });
+            {//tells ASP.Net Identity the application is using JWT
+                   options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                   options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(configureOptions =>
+            {//tells ASP.Net to look for Bearer authentication with these options
+                   configureOptions.ClaimsIssuer = jwtOptions[nameof(JwtIssuerOptions.Issuer)];
+                   configureOptions.TokenValidationParameters = tokenValidationPrms;
+                   configureOptions.SaveToken = true; // allows token access in controller
+            });
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("ApiUser", policy => policy.RequireClaim(
@@ -95,26 +98,46 @@ namespace SimpleCrm.WebApi
                 Constants.JwtClaims.ApiAccess));
             });
 
-                var identityBuilder = services.AddIdentityCore<CrmUser>(o =>
-                {
-                    //add any custom password rules here
-                });
-                identityBuilder = new IdentityBuilder(
+            var identityBuilder = services.AddIdentityCore<CrmUser>(o =>
+            {
+              //add any custom password rules here
+            });
+            identityBuilder = new IdentityBuilder(
                     identityBuilder.UserType,
                     typeof(IdentityRole),
                     identityBuilder.Services);
-                identityBuilder.AddEntityFrameworkStores<CrmIdentityDbContext>();
-                identityBuilder.AddRoleValidator<RoleValidator<IdentityRole>>();
-                identityBuilder.AddRoleManager<RoleManager<IdentityRole>>();
-                identityBuilder.AddSignInManager<SignInManager<CrmUser>>();
-                identityBuilder.AddDefaultTokenProviders();
+            identityBuilder.AddEntityFrameworkStores<CrmIdentityDbContext>();
+            identityBuilder.AddRoleValidator<RoleValidator<IdentityRole>>();
+            identityBuilder.AddRoleManager<RoleManager<IdentityRole>>();
+            identityBuilder.AddSignInManager<SignInManager<CrmUser>>();
+            identityBuilder.AddDefaultTokenProviders();
 
-                services.AddControllersWithViews();
-                services.AddRazorPages();
-                services.AddSpaStaticFiles(config =>
-                {
-                    config.RootPath = Configuration["SpaRoot"];
-                });
+            services.AddOpenApiDocument(options =>
+            {
+
+                options.DocumentName = "v1";
+                options.Title = "Simple CRM";
+                options.Version = "1.0"; 
+                options.DocumentProcessors.Add(new SecurityDefinitionAppender("JWT token",
+                    new List<string>(),
+                    new OpenApiSecurityScheme
+                    {
+                        In = OpenApiSecurityApiKeyLocation.Header,
+                        Name = "Authorization",
+                        Type = OpenApiSecuritySchemeType.ApiKey,
+                        Description = "Type into the textbox: 'Bearer {your_JWT_token}'. You can get a JWT from endpoints: '/auth/register' or '/auth/login'"
+                    }
+            ));
+
+                options.OperationProcessors.Add(new OperationSecurityScopeProcessor("Jwt token"));
+            });
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddSpaStaticFiles(config =>
+            {
+               config.RootPath = Configuration["SpaRoot"];
+            });
 
                 services.AddSingleton<IJwtFactory>();
                 services.AddScoped<ICustomerData, SqlCustomerData>();

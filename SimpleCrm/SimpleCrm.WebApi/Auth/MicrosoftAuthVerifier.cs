@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using NPOI.SS.Formula.Functions;
 
 namespace SimpleCrm.WebApi.Auth
 {
@@ -44,7 +45,7 @@ namespace SimpleCrm.WebApi.Auth
                 var response = await client.SendAsync(requestMessage);
                 var payloadStr = await response.Content.ReadAsStringAsync();
                 var payload = JObject.Parse(payloadStr);
-                //{"token_type":"Bearer","scope":"https://graph.microsoft.com/User.Read","expires_in":3599,"ext_expires_in":0,"access_token":"eyJ...Apg"}
+                //{"token_type":"Bearer","scope":"https://graph.microsoft.com/User.Read","expires_in":3599,"ext_expires_in":0,"access_token":"IamBatmanyJ...Apg"}
 
                 if (payload["error"] != null)
                 {   // malformed request
