@@ -12,7 +12,7 @@ namespace SimpleCrm.WebApi.Controllers
     [Route("")]
     public class HomeController : Controller
     {
-        [Route("home")]
+        [Route("")]
         public IActionResult Index()
         {
             return View();
