@@ -19,6 +19,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using NSwag.Generation.Processors.Security;
 using NSwag;
+using SimpleCrm.WebApi.Filters;
+using System.Text.Json.Serialization;
 
 namespace SimpleCrm.WebApi
 {
@@ -132,7 +134,15 @@ namespace SimpleCrm.WebApi
                 options.OperationProcessors.Add(new OperationSecurityScopeProcessor("Jwt token"));
             });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+            .AddJsonOptions(options =>
+            {
+                    var settings = options.JsonSerializerOptions;
+                    settings.PropertyNameCaseInsensitive = true;
+                    settings.Converters.Add(new JsonStringEnumConverter());
+            });    
+
+
             services.AddRazorPages();
             services.AddSpaStaticFiles(config =>
             {
