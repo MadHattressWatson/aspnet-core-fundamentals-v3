@@ -21,13 +21,14 @@ using NSwag.Generation.Processors.Security;
 using NSwag;
 using SimpleCrm.WebApi.Filters;
 using System.Text.Json.Serialization;
+using NSwag.AspNetCore;
 
 
 namespace SimpleCrm.WebApi
 {
     public class Startup
     {
-        private const string SecretKey = "Iambatmansadlfkjhsadflkj3087u4we38ru4";
+        private const string SecretKey = "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";
         private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
         public Startup(IConfiguration configuration)
         {
@@ -39,7 +40,6 @@ namespace SimpleCrm.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             var googleOptions = Configuration.GetSection(nameof(GoogleAuthSettings));
             services.Configure<GoogleAuthSettings>(options =>
             {
@@ -152,7 +152,7 @@ namespace SimpleCrm.WebApi
                config.RootPath = Configuration["SpaRoot"];
             });
 
-                services.AddSingleton<IJwtFactory>();
+                services.AddSingleton<IJwtFactory, JwtFactory>();
                 services.AddScoped<ICustomerData, SqlCustomerData>();
             }
 
@@ -180,9 +180,20 @@ namespace SimpleCrm.WebApi
                 app.UseAuthentication();
                 app.UseAuthorization();
 
+                app.UseOpenApi();
+                app.UseSwaggerUi3(settings =>
+                {
+                    var microsoftOptions = Configuration.GetSection(nameof(MicrosoftAuthSettings));
+                    settings.OAuth2Client = new OAuth2ClientSettings
+                    {
+                        ClientId = microsoftOptions[nameof(MicrosoftAuthSettings.ClientId)],
+                        ClientSecret = microsoftOptions[nameof(MicrosoftAuthSettings.ClientSecret)],
+                        AppName = "Simple CRM",
+                        Realm = "Nexul Academy"
+                    };
+                });
                 app.UseEndpoints(endpoints =>
                 {
-
                     endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller}/{action}/{id?}");

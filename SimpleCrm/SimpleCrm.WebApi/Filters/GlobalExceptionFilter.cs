@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCrm.WebApi.Filters
 {
-    public class GlobalExceptionFilter
+    public class GlobalExceptionFilter: IExceptionFilter, IDisposable
     {
         private readonly ILogger<GlobalExceptionFilter> _logger;
 

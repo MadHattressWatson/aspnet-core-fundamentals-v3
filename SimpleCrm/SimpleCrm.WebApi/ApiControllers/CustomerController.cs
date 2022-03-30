@@ -10,8 +10,6 @@ using Microsoft.Extensions.Logging;
 
 
 namespace SimpleCrm.WebApi.ApiControllers
-
-
 {
     [Route("api/customers")]
     [Authorize(Policy = "ApiUser")]

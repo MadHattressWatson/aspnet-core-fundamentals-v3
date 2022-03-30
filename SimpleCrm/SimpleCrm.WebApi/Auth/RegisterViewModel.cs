@@ -10,7 +10,6 @@ namespace SimpleCrm.WebApi.Auth
 
         [Required]
         public string Password { get; set; }
-                
-
+      
     }
 }

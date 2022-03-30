@@ -9,7 +9,7 @@ using NPOI.SS.Formula.Functions;
 namespace SimpleCrm.WebApi.Auth
 {
 
-    public class MicrosoftAuthVerifier
+    public class MicrosoftAuthVerifier<T>
     {
         private readonly MicrosoftAuthSettings _microsoftAuthSettings;
         private readonly string _host;
