@@ -25,7 +25,6 @@ export class CustomerListPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-
   openDetail(customer: Customer): void {
     if(customer) {
     this.router.navigate([`./customer/${customer.customerId}`]);
@@ -39,7 +38,6 @@ export class CustomerListPageComponent implements OnInit {
     });
   }
 }
-
 
 
 

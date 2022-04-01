@@ -1,13 +1,13 @@
 <div class="content-column">
   <mat-card>
-    <mat-card-title fxLayout>
+    <mat-card-title fxLayoutAlign="space-between baseline">
       <span>Customers</span>
       <span fxflex> </span>
       <button class="addButton" mat-mini-fab (click)="addCustomer()">
-            <mat-icon aria-label="Add Customer">add</mat-icon>
+        <mat-icon aria-label="Add Customer">add</mat-icon>
       </button>
     </mat-card-title>
-    <table mat-table [dataSource]="customers$">
+    <!-- <table mat-table [dataSource]="customers$">
       {{customers$ | async | json}}
       <ng-container matColumnDef="icon">
         <th mat-header-cell *matHeaderCellDef> </th>
@@ -45,7 +45,23 @@
 
       <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
-    </table>
+    </table> -->
+
+    <mat-list>
+      <mat-list-item *ngFor="let customer of customers$ | async">
+        <mat-icon mat-list-icon
+          [svgIcon]="customer.statusCode | statusIcon">status</mat-icon>
+
+        <div mat-line>
+          {{ customer.firstName | titlecase }}
+          {{ customer.lastName | titlecase }}
+        </div>
+        <div mat-line>{{ customer.phoneNumber }}</div>
+        <div mat-line>{{ customer.emailAddress }}</div>
+        <button mat-icon-button color="primary" (click)="openDetail(customer)">
+            <mat-icon aria-label="View customer detail">edit</mat-icon>
+          </button>
+        </mat-list-item>
+    </mat-list>
   </mat-card>
 </div>
-

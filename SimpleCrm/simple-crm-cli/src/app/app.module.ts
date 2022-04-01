@@ -10,6 +10,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { CustomerModule } from './customer/customer.module';
 import { AppIconsService } from './shared/app-icons.service';
+import { StatusIconPipe } from './customer/status-icon.pipe';
+
 
 @NgModule({
   declarations: [
@@ -26,8 +28,7 @@ import { AppIconsService } from './shared/app-icons.service';
     MatIconModule,
     MatListModule,
     MatButtonModule,
-
-  ],
+    ],
   providers: [AppIconsService],
   bootstrap: [AppComponent]
 })

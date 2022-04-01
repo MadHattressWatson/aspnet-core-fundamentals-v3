@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { CustomerRoutingModule } from './customer-routing.module';
@@ -18,12 +18,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { StatusIconPipe } from './status-icon.pipe';
+import { MatListModule } from '@angular/material/list';
+
 @NgModule({
   declarations: [
     CustomerListPageComponent,
     CustomerCreateDialogComponent,
     CustomerDetailComponent,
-    StatusIconPipe
+    StatusIconPipe,
   ],
 
   imports: [
@@ -39,13 +41,14 @@ import { StatusIconPipe } from './status-icon.pipe';
     MatSelectModule,
     MatSnackBarModule,
     FlexLayoutModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
+    MatListModule,
   ],
   providers: [
     {
       provide: CustomerService, //the base class requested bu components
-      useClass: CustomerMockService //the derived type to be injected instead.
-    }
-  ]
+      useClass: CustomerMockService, //the derived type to be injected instead.
+    },
+  ],
 })
-export class CustomerModule { }
+export class CustomerModule {}

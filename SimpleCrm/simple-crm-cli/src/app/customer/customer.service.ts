@@ -10,15 +10,17 @@ import {Customer } from './customer.model';
 
   search(term: string): Observable<Customer[]> {
     return this.http.get<Customer[]>('/api/customer/search?term=' + term);
-}
-get(customerId: number): Observable<Customer|undefined> {
-  return this.http.get<Customer>('/api/customer/' + customerId);
-}
+  }
+
+  get(customerId: number): Observable<Customer|undefined> {
+    return this.http.get<Customer>('/api/customer/' + customerId);
+  }
+
   insert(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>('/api/customer', customer);
-}
-  update(customer: Customer): Observable<Customer> {
+  }
 
+  update(customer: Customer): Observable<Customer> {
     return this.http.put<Customer>(`/api/customer/${customer.customerId}`, customer);
   }
 }
