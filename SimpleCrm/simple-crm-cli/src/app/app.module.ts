@@ -25,7 +25,7 @@ import { AdminComponent } from './account/admin'
   declarations: [
     AppComponent,
     AdminComponent,
-    LoginComponent,
+    LoginComponent
   ],
 
   imports: [

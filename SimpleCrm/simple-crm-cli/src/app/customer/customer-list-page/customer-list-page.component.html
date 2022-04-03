@@ -7,6 +7,24 @@
         <mat-icon aria-label="Add Customer">add</mat-icon>
       </button>
     </mat-card-title>
+
+    <div class="container search-container">
+      <div class="row justify-content-center">
+        <div class="col-md-auto">
+          <div class="search-heading">
+            <h2>Search for Data</h2>
+            <p class="text-right">powered by <a href="https://www.SimpleCrm.org/">SimpleCrm</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-8">
+          <div class="input-group input-group-md">
+            <input id="search-input" type="text" class="form-control" placeholder="eg. Testing" aria-label="eg. Testing" autofocus>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- <table mat-table [dataSource]="customers$">
       {{customers$ | async | json}}
       <ng-container matColumnDef="icon">

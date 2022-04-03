@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { SigninGoogleComponent } from './signin-google/signin-google.component';
+import { SigninMicrosoftComponent } from './signin-microsoft/signin-microsoft.component';
+import { RegistrationComponent }  from 
 
 const routes: Routes = [
   {
