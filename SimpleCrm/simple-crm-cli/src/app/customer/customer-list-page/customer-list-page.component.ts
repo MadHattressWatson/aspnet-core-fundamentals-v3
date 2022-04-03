@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { CustomerCreateDialogComponent } from '../customer-create-dialog/customer-create-dialog.component';
 import { Router } from '@angular/router';
 import { debounceTime, map, switchMap } from 'rxjs/operators';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 
 @Component({
@@ -21,6 +21,8 @@ export class CustomerListPageComponent implements OnInit {
   filterForm: FormGroup | undefined;
   filteredContact$: any;
   contactCtrl: any;
+  filtered: FormControl = new FormControl('');
+
 
   constructor(
     private customerService: CustomerService,
@@ -32,10 +34,10 @@ export class CustomerListPageComponent implements OnInit {
     this.customers$ = this.customerService.search('');
     this.filteredContact$ = this.contactCtrl.valueChanges.pipe(
       debounceTime(700),
-      switchMap((formValue:string | OrganizationalUserAccess)=>{
+      switchMap((formValue:string | filteredResults$)=>{
         if(typeof formValue === 'string'){
           const term = formValue;
-          return this['organizationUserSvc'].searchByEmail(orgId,term,20);
+          return this['filter$'].searchByEmail(orgId,term,20);
       }
       return of([]);
     }),
@@ -56,6 +58,20 @@ export class CustomerListPageComponent implements OnInit {
   };
 }
 
+
+ngOnInit() {
+  this.obs=this.mform.valueChanges
+    .pipe(
+      debounceTime(700),
+      switchMap(id => {
+
+        console.log(id)
+        return this.http.get(url)
+
+      })
+    )
+    .subscribe(data => console.log(data));
+}
 
 
 
