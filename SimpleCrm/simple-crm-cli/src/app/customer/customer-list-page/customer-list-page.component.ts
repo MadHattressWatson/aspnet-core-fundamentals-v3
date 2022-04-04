@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Customer } from '../customer.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerService } from '../customer.service';
@@ -7,22 +7,20 @@ import { CustomerCreateDialogComponent } from '../customer-create-dialog/custome
 import { Router } from '@angular/router';
 import { debounceTime, map, switchMap } from 'rxjs/operators';
 import { FormControl, FormGroup } from '@angular/forms';
-import { combineLatest } from 'rxjs';
-import {  }
+
+
 
 @Component({
   selector: 'crm-customer-list-page',
   templateUrl: './customer-list-page.component.html',
   styleUrls: ['./customer-list-page.component.scss'],
 })
-export class CustomerListPageComponent implements OnInit {
-  [x: string]: any;
-  customers$: Observable<Customer[]>;
+export class CustomerListPageComponent {
   displayColumns = ['icon', 'name', 'phone', 'email', 'status', 'actions'];
   filterForm: FormGroup | undefined;
-  filteredContact$: any;
-  contactCtrl: any;
-  filtered: FormControl = new FormControl('');
+  filteredContacts$: Observable<Customer[]>;
+  contactCtrl: FormControl;
+
 
 
   constructor(
@@ -31,19 +29,14 @@ export class CustomerListPageComponent implements OnInit {
     public dialog: MatDialog
   )
   {
-    this.contactCtrl = newFormControl();
-    this.customers$ = this.customerService.search('');
-    this.filteredContact$ = this.contactCtrl.valueChanges.pipe(
+    this.contactCtrl = new FormControl();
+    this.filteredContacts$ = this.contactCtrl.valueChanges.pipe(
       debounceTime(700),
-      switchMap((formValue:string | filteredResults$)=>{
-        if(typeof formValue === 'string'){
-          const term = formValue;
-          return this['filterdResults$'].searchByEmail(orgId,term,20);
-      }
-      return of([]);
-    }),
+      switchMap((formValue:string)=>
+      {
+        return this.customerService.search(formValue)
+      }));
   }
-  ngOnInit(): void {}
 
   openDetail(customer: Customer): void {
     if(customer) {
@@ -55,39 +48,13 @@ export class CustomerListPageComponent implements OnInit {
     const dialogRef = this.dialog.open(CustomerCreateDialogComponent, {
       width: '250px',
       data: null,
-    }),
+    });
   };
 }
 
 
-// ngOnInit() {
-//   this.obs=this.mform.valueChanges
-//     .pipe(
-//       debounceTime(700),
-//       switchMap(id => {
-
-//         console.log(id)
-//         return this.http.get(url)
-
-//       })
-//     )
-//     .subscribe(data => console.log(data));
-// }
 
 
 
 
-
-
-function newFormControl(): any {
-  throw new Error('Function not implemented.');
-}
-
-function orgId(orgId: any, term: string, arg2: number): any {
-  throw new Error('Function not implemented.');
-}
-
-function ngOnInit() {
-  throw new Error('Function not implemented.');
-}
 

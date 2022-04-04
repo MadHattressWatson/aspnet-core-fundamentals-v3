@@ -3,16 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SigninGoogleComponent } from './signin-google/signin-google.component';
 import { SigninMicrosoftComponent } from './signin-microsoft/signin-microsoft.component';
-import { RegistrationComponent }  from 
+// import { RegistrationComponent }  from
 
 const routes: Routes = [
   {
     path: 'account',
     children: [
-      {
-        path: 'register',
-        component: RegistrationComponent
-      },
+      // {
+      //   path: 'register',
+      //   component: RegistrationComponent
+      // },
       {
         path: 'login',
         component: LoginComponent,
@@ -27,8 +27,16 @@ const routes: Routes = [
     path: 'signin-google',
     component: SigninGoogleComponent,
   },
-  {
-    path: 'not-authorized',
-    component: NotAuthorizedComponent,
-    // generated in the prior lesson. you may want to move it to this module and out of AppModule.
-  },
+  // {
+  //   path: 'not-authorized',
+  //   component: NotAuthorizedComponent,
+  //   // generated in the prior lesson. you may want to move it to this module and out of AppModule.
+  // },
+]
+  @NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
+    providers: []
+  })
+  export class AccountRoutingModule { }
+

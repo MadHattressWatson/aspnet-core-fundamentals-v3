@@ -4,6 +4,7 @@ import { AccountRoutingModule } from './account-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SigninMicrosoftComponent } from './signin-microsoft/signin-microsoft.component';
 import { SigninGoogleComponent } from './signin-google/signin-google.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -13,8 +14,10 @@ import { SigninGoogleComponent } from './signin-google/signin-google.component';
     SigninGoogleComponent
   ],
   imports: [
+    AccountRoutingModule,
     CommonModule,
-    AccountRoutingModule
+    BrowserModule
   ]
 })
-export class AccountModule { }
+export class AccountModule {}
+
