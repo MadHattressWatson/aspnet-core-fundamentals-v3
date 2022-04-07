@@ -49,6 +49,8 @@ export class CustomerListPageComponent {
       width: '250px',
       data: null,
     });
+  dialogRef.afterClosed().subscribe((customner:Customer) =>{
+    this.customerService.save(customer)
   };
 }
 

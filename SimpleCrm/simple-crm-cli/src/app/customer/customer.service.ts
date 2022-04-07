@@ -5,6 +5,9 @@ import {Customer } from './customer.model';
 
 @Injectable()
   export class CustomerService {
+  save(customer: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http: HttpClient) { }
 

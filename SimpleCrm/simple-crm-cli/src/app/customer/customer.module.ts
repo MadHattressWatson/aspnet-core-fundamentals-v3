@@ -45,10 +45,11 @@ import { MatListModule } from '@angular/material/list';
     MatListModule,
   ],
   providers: [
-    {
-      provide: CustomerService, //the base class requested bu components
-      useClass: CustomerMockService, //the derived type to be injected instead.
-    },
+
+      CustomerService
   ],
+  entryComponents:[
+    CustomerCreateDialogComponent
+  ]
 })
 export class CustomerModule {}
