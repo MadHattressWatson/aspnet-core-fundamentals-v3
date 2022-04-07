@@ -8,6 +8,9 @@ import { AppIconsService } from './shared/app-icons.service';
 import { AccountModule } from './account/account.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './account/jwt-interceptor/jwt-interceptor.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { layoutReducer } from './store/layout.store/layout.store.component';
 
 
 
@@ -26,6 +29,7 @@ import { JwtInterceptor } from './account/jwt-interceptor/jwt-interceptor.compon
     AccountModule,
 
     ],
+
   providers: [
     {
       provide:HTTP_INTERCEPTORS,
@@ -39,4 +43,12 @@ import { JwtInterceptor } from './account/jwt-interceptor/jwt-interceptor.compon
 export class AppModule {
   constructor(iconService: AppIconsService) {}
 }
+
+StoreModule.forRoot({}), // for no global state, use an empty object,  {}.
+        StoreModule.forFeature(layoutFeatureKey, layoutReducer),
+        StoreDevtoolsModule.instrument({
+          name: 'Nexul Academy - Simple CRM'
+        })
+      }
+
 
