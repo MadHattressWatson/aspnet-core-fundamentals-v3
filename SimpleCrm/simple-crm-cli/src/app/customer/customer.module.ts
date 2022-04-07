@@ -43,6 +43,8 @@ import { MatListModule } from '@angular/material/list';
     FlexLayoutModule,
     CustomerRoutingModule,
     MatListModule,
+//     EffectsModule.forFeature([CustomerEffects])
+// }
   ],
   providers: [
 

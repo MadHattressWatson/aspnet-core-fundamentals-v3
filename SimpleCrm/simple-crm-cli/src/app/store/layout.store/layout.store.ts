@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { createReducer, on, Action, createAction } from '@ngrx/store';
+import { createReducer, on, Action, createAction, createFeatureSelector, createSelector } from '@ngrx/store';
 
 @Component({
   selector: 'crm-layout.store',
@@ -17,6 +17,15 @@ const initialState: LayoutState = {
 export const toggleSidenav = createAction('[Layout] Toggle Sidenav');
       export const openSidenav = createAction('[Layout] Open Sidenav');
       export const closeSidenav = createAction('[Layout] Close Sidenav');
+
+
+      export const layoutFeatureKey = 'layout';
+      const getLayoutFeature = createFeatureSelector(layoutFeatureKey);
+
+      export const selectShowSideNav = createSelector(
+        getLayoutFeature,
+        (state: LayoutState) => state.showSidenav
+      );
 
 
 

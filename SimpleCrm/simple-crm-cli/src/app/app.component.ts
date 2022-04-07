@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { constructor } from 'jasmine';
+import { Observable } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
-import { LayoutState, toggleSidenav } from './store/layout.store/layout.store.component';
+import { LayoutState, selectShowSideNav, toggleSidenav } from './store/layout.store/layout.store';
 import { User, Role }
 
 @Component({
@@ -31,3 +33,8 @@ export class AppComponent {
 sideNavToggle() {
   this.store.dispatch(toggleSidenav());
 }
+showSideNav$: new Observable<boolean>(); // <-- NEW
+
+      constructor(private store: new Store<LayoutState>() {
+        this.showSideNav$ = this.store.pipe(select(selectShowSideNav)); // <-- NEW
+      }

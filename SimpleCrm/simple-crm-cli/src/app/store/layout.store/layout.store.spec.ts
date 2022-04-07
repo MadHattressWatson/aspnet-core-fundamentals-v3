@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Layout.StoreComponent } from './layout.store.component';
+import { Layout.StoreComponent } from './layout.store';
 
 describe('Layout.StoreComponent', () => {
   let component: Layout.StoreComponent;

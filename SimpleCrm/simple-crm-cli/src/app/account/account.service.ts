@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, fromEventPattern, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { MicrosoftAuthViewModel, anonymousUser, CredentialsViewModel, MicrosoftOptions, UserSummaryViewModel} from './account.model'
+import { MicrosoftAuthViewModel, anonymousUser, CredentialsViewModel, MicrosoftOptions, UserSummaryViewModel} from './account.???'
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class AccountService {
     private snackBar: MatSnackBar // a.k.a. 'toast', or a temporary notice
   )
   {
-    this.baseUrl = environment.server; // + environment.apiUrl + 'auth';
+    this.baseUrl = environment.server + environment.apiUrl + 'auth';
     this.cachedUser = anonymousUser(); // <- this function to be added to 'account.models.ts'.
    // you can make up what makes an anonymous user, I usually set the name to 'anonymous' (most users name is an email address)
 
