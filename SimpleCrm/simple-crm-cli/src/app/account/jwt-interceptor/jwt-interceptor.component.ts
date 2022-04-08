@@ -9,6 +9,7 @@ import {
   HttpEvent,
   HttpErrorResponse,
 } from '@angular/common/http';
+import { UserSummaryViewModel } from '../account.model';
 
 @Component({
   selector: 'crm-jwt-interceptor',
@@ -24,7 +25,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   private getJwtToken(): string | null {
     const cu = localStorage.getItem('currentUser');
-    let cachedUser: UserSummary;
+    let cachedUser: UserSummaryViewModel;
     if (!cu) {
       return null;
     }

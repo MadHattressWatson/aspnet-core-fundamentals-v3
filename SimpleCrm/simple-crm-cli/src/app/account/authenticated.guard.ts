@@ -18,17 +18,13 @@ private accountService: AccountService
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       localStorage.setItem('loginReturnUrl', state.url);
-      map(user =>{
-        if (user.name === 'Anonymous'){
-          this.router.navigate(['./account/login']);
-          return false;
-        }
+
 
       if (this.accountService.isAnonymous) {
-        this.accountService.login();
+        this.router.navigate(['./account/login']);
         return false;
       }
-      const User = this.accountService.user;
+      const user = this.accountService.user.value;
       if (!user || !user.roles || user.roles.length === 0) {
         // role not authorized redirect to home page
         this.router.navigate(['not-authorized']);
@@ -36,8 +32,6 @@ private accountService: AccountService
        }
         // authorized to return true
           return true;
-
-      });
 
     }
   }

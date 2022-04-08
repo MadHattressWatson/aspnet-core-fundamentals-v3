@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlatformLocation } from '@angular/common';
@@ -6,6 +6,9 @@ import { HttpParams } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { AccountService } from '../account.service';
+import { UserSummaryViewModel } from '../account.model';
+
+
 
 
 @Component({
@@ -15,7 +18,6 @@ import { AccountService } from '../account.service';
 
 })
 export class LoginComponent
-//  implements OnInit
 {
     @Input()
      signInError : string;
@@ -30,7 +32,7 @@ export class LoginComponent
       public snackBar: MatSnackBar,
       private router: Router,
       private platformLocation: PlatformLocation,
-  ) {
+      ) {
       this.signInError = 'Wrong Password'
       this.currentUser = this.accountService.user;
       this.loginForm = this.fb.group({
@@ -40,8 +42,8 @@ export class LoginComponent
 
     {
      this.snackBar.open('Authorizing with Microsoft...',  '', {duration: 1600});
-     const.baseUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?';
-     this.accountService.loginMicrosoftOptions().subscribe((opts: { [key: string]: string; }) => {
+     const baseUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?';
+     this.accountService.loginMicrosoftOptions().subscribe(opts => {
        const options: {[key: string]: string} = {
          ...opts,
          response_type: 'code',
@@ -54,10 +56,11 @@ export class LoginComponent
        }
 
        window.location.href = baseUrl + params.toString();
-     }),
+     });
 
-
-
+    }
+  }
+}
 
 //  useGoogle(): void {
 //    // use this method call from a button click on the "Use Google" icon of the signin option selector page.
@@ -87,6 +90,4 @@ export class LoginComponent
 //      window.location.href = baseUrl + params.toString(); // redirect the browser to Google
 //    }),
 //   }
-
-
 

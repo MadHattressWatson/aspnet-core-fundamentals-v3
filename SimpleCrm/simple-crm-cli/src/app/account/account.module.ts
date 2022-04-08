@@ -7,6 +7,7 @@ import { SigninGoogleComponent } from './signin-google/signin-google.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 import { LogoutCompleteComponent } from './logout-complete/logout-complete.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -25,6 +26,8 @@ import { LogoutCompleteComponent } from './logout-complete/logout-complete.compo
     AccountRoutingModule,
     CommonModule,
     BrowserModule,
+    MatIconModule,
+
   ]
 })
 

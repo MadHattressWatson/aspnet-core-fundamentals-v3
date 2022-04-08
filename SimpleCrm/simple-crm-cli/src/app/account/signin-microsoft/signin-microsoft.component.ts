@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../account.service';
 
+
 @Component({
   selector: 'pc-signin-microsoft',
   templateUrl: './signin-microsoft.component.html',
@@ -25,20 +26,13 @@ export class SigninMicrosoftComponent {
       if (code) {
         this.snackBar.open('Validating Login...', '', { duration: 8000 }); // user feedback
         this.loading = true; // show spinner when this is true
-        this.accountService.loginMicrosoft(code, sessionState).subscribe(
-          // call your API endpoint with the code and process the result.
-          result => {
-            // your Angular service code can handle storing the current user.
-            this.accountService.loginComplete(result, 'Email has been verified');
-          },
-          _ => { // _ is an error
-            // uh oh!! check the errors, likely a bad token, or a config issue
-            this.loading = false;
-            this.snackBar.open('Verification Failed. Try to login with another account.', '', { duration: 10000 });
-            this.router.navigate(['./account/login']);
-          }
-        );
-      }
-    });
-  }
+        this.accountService.loginMicrosoftCallback(code, sessionState);
+      //   {
+      //       this.loading = false;
+      //       this.snackBar.open('Verification Failed. Try to login with another account.', '', { duration: 10000 });
+      //       this.router.navigate(['./account/login']);
+        // }
+    }
+  });
+ }
 }

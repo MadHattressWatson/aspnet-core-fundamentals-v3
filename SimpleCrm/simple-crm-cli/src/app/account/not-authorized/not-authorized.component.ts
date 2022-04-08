@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'crm-not-authorized',
   templateUrl: './not-authorized.component.html',

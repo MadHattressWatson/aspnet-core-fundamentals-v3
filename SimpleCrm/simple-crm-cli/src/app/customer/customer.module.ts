@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { StatusIconPipe } from './status-icon.pipe';
 import { MatListModule } from '@angular/material/list';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -43,9 +44,10 @@ import { MatListModule } from '@angular/material/list';
     FlexLayoutModule,
     CustomerRoutingModule,
     MatListModule,
-//     EffectsModule.forFeature([CustomerEffects])
-// }
+    EffectsModule.forFeature([CustomerEffects])
+
   ],
+
   providers: [
 
       CustomerService

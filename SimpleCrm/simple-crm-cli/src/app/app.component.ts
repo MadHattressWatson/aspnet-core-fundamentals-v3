@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { constructor } from 'jasmine';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
-import { LayoutState, selectShowSideNav, toggleSidenav } from './store/layout.store/layout.store';
+import { LayoutState, selectShowSideNav, toggleSidenav } from './store/layout.store';
 import { User, Role }
 
 @Component({
@@ -21,6 +21,10 @@ export class AppComponent {
     //   constructor(private authenticationService: AuthenticationService) {
     //     this.authenticationService.user.subscribe(x => this.user = x);
     // }
+      // constructor(private store: new Store<LayoutState>() {
+      //   this.showSideNav$ = this.store.pipe(select(selectShowSideNav)); 
+      // }
+
 
     get isAdmin() {
         return this.user && this.user.role === Role.Admin;
@@ -35,6 +39,3 @@ sideNavToggle() {
 }
 showSideNav$: new Observable<boolean>(); // <-- NEW
 
-      constructor(private store: new Store<LayoutState>() {
-        this.showSideNav$ = this.store.pipe(select(selectShowSideNav)); // <-- NEW
-      }

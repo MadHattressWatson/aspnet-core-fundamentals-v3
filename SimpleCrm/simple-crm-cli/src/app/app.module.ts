@@ -10,11 +10,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './account/jwt-interceptor/jwt-interceptor.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { layoutFeatureKey, layoutReducer } from './store/layout.store/layout.store';
+import { layoutReducer } from './store/layout.store';
 import { EffectsModule } from '@ngrx/effects';
-
-
-
 
 
 @NgModule({
@@ -28,8 +25,14 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserAnimationsModule,
     CustomerModule,
     AccountModule,
-  //   EffectsModule, forRoot([])
-  // }
+    EffectsModule.forRoot([])
+
+
+  StoreModule.forRoot({}), // for no global state, use an empty object,  {}.
+  StoreModule.forFeature(layoutFeatureKey, layoutReducer),
+  StoreDevtoolsModule.instrument({
+    name: 'Nexul Academy - Simple CRM'
+  })
   ],
 
   providers: [
@@ -46,12 +49,8 @@ export class AppModule {
   constructor(iconService: AppIconsService) {}
 }
 
-StoreModule.forRoot({}), // for no global state, use an empty object,  {}.
-        StoreModule.forFeature(layoutFeatureKey, layoutReducer),
-        StoreDevtoolsModule.instrument({
-          name: 'Nexul Academy - Simple CRM'
-        })
-      
+
+
 
 
 

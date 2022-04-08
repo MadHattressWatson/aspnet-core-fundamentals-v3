@@ -3,24 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { BehaviorSubject, fromEventPattern, map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { anonymousUser, UserSummaryViewModel} from './account.model';
 import { Observable } from 'rxjs';
-import { MicrosoftAuthViewModel, anonymousUser, CredentialsViewModel, MicrosoftOptions, UserSummaryViewModel} from './account.???'
+import { CredentialsViewModel, MicrosoftOptions, MicrosoftAuthViewModel} from './account.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  loginMicrosoftOptions() {
-    throw new Error('Method not implemented.');
-  }
-  loginMicrosoft(code: string, sessionState: string) {
-    throw new Error('Method not implemented.');
-  }
+
   private baseUrl: string;
   private cachedUser = new BehaviorSubject<UserSummaryViewModel>(anonymousUser());
-  currentUserSubject: any;
+
 
   constructor(
     private http: HttpClient, // part of Angular to make Http requests
@@ -30,22 +26,16 @@ export class AccountService {
   )
   {
     this.baseUrl = environment.server + environment.apiUrl + 'auth';
-    this.cachedUser = anonymousUser(); // <- this function to be added to 'account.models.ts'.
+    this.cachedUser.next(anonymousUser()); // <- this function to be added to 'account.model.ts'.
    // you can make up what makes an anonymous user, I usually set the name to 'anonymous' (most users name is an email address)
 
    const cu = localStorage.getItem('currentUser'); // <- localStorage is really useful
     if (cu) {
       this.cachedUser.next(JSON.parse(cu));  // <- JSON is built into JavaScript and always available.
       if (!this.isAnonymous){
-        this.loginCompleteHandler(false, this.verifyUser(this.cachedUser));
+        this.loginCompleteHandler(false, this.verifyUser(this.cachedUser.value.()));
       }
     }
-  }
-  loginCompleteHandler(arg0: boolean, arg1: any) {
-    throw new Error('Method not implemented.');
-  }
-  verifyUser(cachedUser: BehaviorSubject<UserSummaryViewModel>): any {
-    throw new Error('Method not implemented.');
   }
 
   get user(): BehaviorSubject<UserSummaryViewModel> {
@@ -53,18 +43,23 @@ export class AccountService {
       return this.cachedUser;
     }
 
-  setUser(user: UserSummaryViewModel): void {
+  set user(user: UserSummaryViewModel): void {
         // called by your components that process a login from password, Google, Microsoft
         this.cachedUser.next(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
     }
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
-  }
+  // public get currentUserValue(): UserSummaryViewModel {
+  //   return this.currentUserSubject.value;
+  // }
   get isAnonymous(): boolean {
-    return this.cachedUser.name === 'Anonymous';
+    return this.cachedUser.value.name === 'Anonymous';
   }
+  // public login() {
+  //   this.cachedUser.value.name = anonymousUser();
+  //   localStorage.removeItem('currentUser');
+  //   this.router.navigate(['/account/login']);
+  // }
 
   public login(username: string, password: string) {
       return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
@@ -79,14 +74,82 @@ export class AccountService {
               return user;
           }));
   }
+  /*
+    Name and password login
+  */
+  public loginPassword(credentials: CredentialsViewModel) {
+    this.loginCompleteHandler(false,
+      this.http.post<UserSummaryViewModel>(this.baseUrl + 'login', credentials)
+    );
+  }
 
   public logout() {
-      this.cachedUser = anonymousUser();
-      // remove user from local storage to log user out
-      localStorage.removeItem('currentUser');
-      this.currentUserSubject.next(null);
+        this.cachedUser.next (anonymousUser());
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+        this.http.post<any>(this.baseUrl + '/logout', {}).subscribe(() => {
+        this.router.navigate(['./account/logout']);
+      });
   }
 
+  public loginMicrosoftOptions(): Observable<MicrosoftOptions> {
+    return this.http.get<MicrosoftOptions>(
+      this.baseUrl + 'external/microsoft'
+    );
   }
+
+  public loginMicrosoftCallback(code: string, state: string) {
+    this.snackBar.open('Validating Login...', '', { duration: 8000 });
+    const body = { accessToken: code, state, baseHref: this.platformLocation.getBaseHrefFromDOM() };
+    this.loginCompleteHandler(true,
+      this.http.post<UserSummaryViewModel>(this.baseUrl + 'external/microsoft', body)
+    );
+  }
+
+  public verifyUser(user: UserSummaryViewModel): Observable<UserSummaryViewModel> {
+    const model = {};
+    const options = !user || !user.jwtToken ? {}
+      : { headers : { Authorization: 'Bearer ' + user.jwtToken }};
+    return this.http.post<UserSummaryViewModel>(
+      this.baseUrl + 'verify',
+      model,
+      options
+    );
+  }
+
+  private loginCompleteHandler(navigate: boolean, caller: Observable<UserSummaryViewModel>) {
+    caller.subscribe(
+      user => {
+        this.loginComplete(user);
+      },
+      resp => {
+        console.error(resp);
+        this.snackBar.open(resp.error.message, 'Ok')
+        if (navigate) {
+          this.router.navigate(['not-authorized']);
+        }
+
+      }
+    );
+  }
+
+  private loginComplete(data: UserSummaryViewModel) {
+    this.cachedUser = data;
+    localStorage.setItem('currentUser', JSON.stringify(data));
+    if (!data.roles || data.roles.length === 0) {
+      // no access?  shouldn't happen, redirect to a page not needing login
+
+      this.snackBar.open('No Access', '', { duration: 3000 });
+      this.router.navigate(['not-authorized']);
+    } else {
+      this.snackBar.open('Login Complete', '', { duration: 3000 });
+      const returnUrl = localStorage.getItem('loginReturnUrl') || '';
+      this.router.navigate([returnUrl]);
+    }
+  }
+
+}
+
 
 
