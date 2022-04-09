@@ -5,7 +5,7 @@ import { CustomerService } from '../customer.service';
 import { Observable, of } from 'rxjs';
 import { CustomerCreateDialogComponent } from '../customer-create-dialog/customer-create-dialog.component';
 import { Router } from '@angular/router';
-import { debounceTime, map, switchMap } from 'rxjs/operators';
+import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { FormControl, FormGroup } from '@angular/forms';
 
 
@@ -31,13 +31,16 @@ export class CustomerListPageComponent {
   {
     this.contactCtrl = new FormControl();
     this.filteredContacts$ = this.contactCtrl.valueChanges.pipe(
+      startWith(''),
       debounceTime(700),
       switchMap((formValue:string)=>
       {
         return this.customerService.search(formValue)
-      }));
+      }),
+    );
   }
 
+  // ngOnIt(): void ()
   openDetail(customer: Customer): void {
     if(customer) {
     this.router.navigate([`./customer/${customer.customerId}`]);
@@ -49,14 +52,10 @@ export class CustomerListPageComponent {
       width: '250px',
       data: null,
     });
-  dialogRef.afterClosed().subscribe((customner:Customer) =>{
+  dialogRef.afterClosed().subscribe((customer:Customer) =>{
     this.customerService.save(customer)
-  };
+    }
+  }
 }
-
-
-
-
-
 
 

@@ -27,7 +27,7 @@ private accountService: AccountService
       const user = this.accountService.user.value;
       if (!user || !user.roles || user.roles.length === 0) {
         // role not authorized redirect to home page
-        this.router.navigate(['not-authorized']);
+        this.router.createUrlTree(['not-authorized']);
         return false;
        }
         // authorized to return true

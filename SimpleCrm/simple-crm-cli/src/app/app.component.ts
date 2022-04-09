@@ -15,14 +15,14 @@ import { User, Role }
 export class AppComponent {
   title = 'Simple CRM';
   	  user: User;
-  authenticationService: any;
+  AuthenticationService: any;
 
       constructor(private store: Store<LayoutState>) { }
     //   constructor(private authenticationService: AuthenticationService) {
     //     this.authenticationService.user.subscribe(x => this.user = x);
     // }
       // constructor(private store: new Store<LayoutState>() {
-      //   this.showSideNav$ = this.store.pipe(select(selectShowSideNav)); 
+      //   this.showSideNav$ = this.store.pipe(select(selectShowSideNav));
       // }
 
 
