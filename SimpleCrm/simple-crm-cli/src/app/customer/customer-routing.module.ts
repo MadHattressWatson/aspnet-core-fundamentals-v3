@@ -6,11 +6,11 @@ import { CustomerListPageComponent } from './customer-list-page/customer-list-pa
 
 
 const routes: Routes = [
-  {
-    path: 'customers',
-    pathMatch: 'full',
-    component: CustomerListPageComponent,
-  },
+  // {
+  //   path: 'customers',
+  //   pathMatch: 'full',
+  //   component: CustomerListPageComponent,
+  // },
   {
     path: 'customer/:id',
     pathMatch: 'full',

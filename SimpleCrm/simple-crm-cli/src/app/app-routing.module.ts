@@ -7,8 +7,9 @@ import { LoginComponent } from './account/login/login.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'customers',
-    pathMatch: 'full'
+    loadChildren: () => import('./customers/customers.module').then(mod => mod.CustomersModule)
+    // redirectTo: 'customers',
+    // pathMatch: 'full'
   },
 
   // {

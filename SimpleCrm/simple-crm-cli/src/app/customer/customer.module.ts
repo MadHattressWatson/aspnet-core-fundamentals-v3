@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { CustomerRoutingModule } from './customer-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomerService } from './customer.service';
 import { CustomerMockService } from './customer-mock.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,6 +20,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { StatusIconPipe } from './status-icon.pipe';
 import { MatListModule } from '@angular/material/list';
 import { EffectsModule } from '@ngrx/effects';
+import { JwtInterceptor } from '../account/jwt-interceptor/jwt-interceptor.component';
 
 @NgModule({
   declarations: [
@@ -55,5 +56,11 @@ import { EffectsModule } from '@ngrx/effects';
   entryComponents:[
     CustomerCreateDialogComponent
   ]
-})
+}),
+providers: [
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  },
 export class CustomerModule {}
