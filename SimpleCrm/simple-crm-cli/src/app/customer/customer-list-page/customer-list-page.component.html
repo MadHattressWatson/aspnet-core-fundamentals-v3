@@ -71,11 +71,10 @@
 
       <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
-    </table>
-  </mat-card>
-</div>
+    </table> -->
 
     <mat-list>
+      <table cdk-table [dataSource]="dataSource" [trackBy]="trackByUserId"></table>
       <mat-list-item *ngFor="let customer of filteredContacts$ | async">
         <mat-icon mat-list-icon
           [svgIcon]="customer.statusCode | statusIcon">status</mat-icon>
@@ -89,8 +88,10 @@
         <button mat-icon-button color="primary" (click)="openDetail(customer)">
             <mat-icon aria-label="View customer detail">edit</mat-icon>
         </button>
-      </mat-list-item>
+        </mat-list-item>
     </mat-list>
+  </mat-card>
+</div>
 
 
 
