@@ -1,32 +1,37 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Customer } from '../customer.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerService } from '../customer.service';
-import { Observable, of } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { CustomerCreateDialogComponent } from '../customer-create-dialog/customer-create-dialog.component';
 import { Router } from '@angular/router';
 import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { FormControl, FormGroup } from '@angular/forms';
 
-
-
 @Component({
   selector: 'crm-customer-list-page',
   templateUrl: './customer-list-page.component.html',
   styleUrls: ['./customer-list-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomerListPageComponent {
+export class DemoComponent {
+
+  @Input() customers: Customer[] | undefined
+
+}
+export class CustomerListPageComponent implements OnInit{
+  filteredCustomers$: Observable<Customer[]> | undefined;
   displayColumns = ['icon', 'name', 'phone', 'email', 'status', 'actions'];
+  filterInput = new FormControl();
   filterForm: FormGroup | undefined;
   filteredContacts$: Observable<Customer[]>;
   contactCtrl: FormControl;
 
-
-
   constructor(
     private customerService: CustomerService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    // constructor(private cdr: ChangeDetectorRef) {}
   )
   {
     this.contactCtrl = new FormControl();
@@ -39,8 +44,12 @@ export class CustomerListPageComponent {
       }),
     );
   }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
-  // ngOnIt(): void ()
+  ngOnIt(): void {}
+
   openDetail(customer: Customer): void {
     if(customer) {
     this.router.navigate([`./customer/${customer.customerId}`]);
@@ -52,9 +61,10 @@ export class CustomerListPageComponent {
       width: '250px',
       data: null,
     });
+
   dialogRef.afterClosed().subscribe((customer:Customer) =>{
     this.customerService.save(customer)
-    }
+    });
   }
 }
 

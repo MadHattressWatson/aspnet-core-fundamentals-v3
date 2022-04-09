@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AccountService } from './account.service';
 
 
@@ -18,7 +18,10 @@ private accountService: AccountService
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       localStorage.setItem('loginReturnUrl', state.url);
-
+      if (true) {
+        // fake authorization check to simulate not-authorized
+        return this.router.createUrlTree(['not-authorized']);
+      }
 
       if (this.accountService.isAnonymous) {
         this.router.navigate(['./account/login']);

@@ -1,8 +1,7 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthenticatedGuard } from './authenticated.guard';
-import { LoginComponent } from '/login';
+import { AuthenticatedGuard } from './account/authenticated.guard';
+import { LoginComponent } from './account/login/login.component';
 
 
 const routes: Routes = [
@@ -12,11 +11,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
 
-  {
-    path: 'admin',
-    canActivate: [AuthenticatedGuard],
-    data: { roles: [Role.Admin]}
-  },
+  // {
+  //   path: 'admin',
+  //   canActivate: [AuthenticatedGuard],
+  //   data: { roles: [Role.Admin]}
+  // },
   {
     path: 'login',
     component: LoginComponent,
@@ -26,6 +25,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   providers: [AuthenticatedGuard]
 })

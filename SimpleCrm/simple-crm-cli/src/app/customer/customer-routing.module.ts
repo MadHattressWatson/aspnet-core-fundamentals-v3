@@ -10,24 +10,24 @@ const routes: Routes = [
     path: 'customers',
     pathMatch: 'full',
     component: CustomerListPageComponent,
-    canActivate: [AuthenticatedGuard]
   },
   {
     path: 'customer/:id',
     pathMatch: 'full',
-    component: CustomerDetailComponent
+    component: CustomerDetailComponent,
+    canActivate: [AuthenticatedGuard]
   },
-  {
-    path: 'admin',
-    component:AdminComponent,
-    canActivate: [AuthenticatedGuard],
-    children: [
-      {...},
-      {...}
+  // {
+  //   path: 'admin',
+  //   component:AdminComponent,
+  //   canActivate: [AuthenticatedGuard],
+  //   children: [
+  //     {...},
+  //     {...}
 
-    ]
+  //   ]
 
-  }
+  // }
   ];
 
 @NgModule({
