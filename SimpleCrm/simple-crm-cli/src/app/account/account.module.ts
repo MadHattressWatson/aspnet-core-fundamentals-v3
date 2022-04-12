@@ -9,6 +9,7 @@ import { NotAuthorizedComponent } from './not-authorized/not-authorized.componen
 import { LogoutCompleteComponent } from './logout-complete/logout-complete.component';
 import { MatIconModule } from '@angular/material/icon';
 
+
 @NgModule({
   declarations: [
     NotAuthorizedComponent,

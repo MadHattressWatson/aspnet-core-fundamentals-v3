@@ -21,6 +21,7 @@ import { StatusIconPipe } from './status-icon.pipe';
 import { MatListModule } from '@angular/material/list';
 import { EffectsModule } from '@ngrx/effects';
 import { JwtInterceptor } from '../account/jwt-interceptor/jwt-interceptor.component';
+import { AppIcon } from '../shared/app-icon.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { JwtInterceptor } from '../account/jwt-interceptor/jwt-interceptor.compo
     CustomerCreateDialogComponent,
     CustomerDetailComponent,
     StatusIconPipe,
+    AppIcon.ServicePipe,
   ],
 
   imports: [
@@ -45,7 +47,8 @@ import { JwtInterceptor } from '../account/jwt-interceptor/jwt-interceptor.compo
     FlexLayoutModule,
     CustomerRoutingModule,
     MatListModule,
-    EffectsModule.forFeature([CustomerEffects])
+    StatusIconPipe,
+    EffectsModule.forFeature([CustomerEffects]),
 
   ],
 

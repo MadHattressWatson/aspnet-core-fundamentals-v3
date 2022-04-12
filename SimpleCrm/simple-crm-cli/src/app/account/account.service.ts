@@ -43,7 +43,7 @@ export class AccountService {
       return this.cachedUser;
     }
 
-  set user(user: UserSummaryViewModel): void {
+  setUser(user: UserSummaryViewModel): void {
         // called by your components that process a login from password, Google, Microsoft
         this.cachedUser.next(user);
         localStorage.setItem('currentUser', JSON.stringify(user));

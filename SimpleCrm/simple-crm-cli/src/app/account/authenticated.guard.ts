@@ -18,10 +18,7 @@ private accountService: AccountService
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       localStorage.setItem('loginReturnUrl', state.url);
-      if (true) {
-        // fake authorization check to simulate not-authorized
-        return this.router.createUrlTree(['not-authorized']);
-      }
+
 
       if (this.accountService.isAnonymous) {
         this.router.navigate(['./account/login']);

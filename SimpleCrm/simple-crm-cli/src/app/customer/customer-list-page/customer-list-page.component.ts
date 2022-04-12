@@ -44,10 +44,6 @@ export class CustomerListPageComponent implements OnInit{
       }),
     );
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
   ngOnIt(): void {}
 
   openDetail(customer: Customer): void {

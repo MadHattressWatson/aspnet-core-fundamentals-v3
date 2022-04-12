@@ -1,7 +1,9 @@
 <div class="content-column">
   <mat-card>
-    <mat-card-title fxLayoutAlign="space-between baseline">
+    <mat-card-title fxLayout>
       <span>Customers</span>
+    </mat-card-title>
+    <div fxLayoutAlign="start baseline">
       <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput [formControl]="filterInput">
@@ -11,40 +13,23 @@
         </button>
       </mat-form-field>
       <mat-icon *ngIf="!filterInput.value" matSuffix>filter_list</mat-icon>
-      <span fxflex> </span>
+      <span fxFlex> </span>
       <button class="addButton" mat-mini-fab (click)="addCustomer()">
         <mat-icon aria-label="Add Customer">add</mat-icon>
       </button>
       <table mat-table [dataSource]="filteredContacts$">
       {{filteredContacts$ | async | json}}
+    </div>
+    <table mat-table [dataSource]="filteredCustomers$">
       <ng-container matColumnDef="icon">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let row">
           <mat-icon [svgIcon]="row.statusCode | statusIcon"></mat-icon>
         </td>
-    <div class="container search-container">
-      <div class="row justify-content-center">
-        <div class="col-md-auto">
-          <div class="search-heading">
-            <h2>Search for Data</h2>
-            <p class="text-right">powered by <a href="https://www.SimpleCrm.org/">SimpleCrm</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-sm-8">
-          <div class="input-group input-group-md">
-            <input id="search-input" type="text" class="form-control" placeholder="eg. Testing" aria-label="eg. Testing" autofocus>
-          </div>
-        </div>
-      </div>
-    </div>
-
-     </ng-container>
+      </ng-container>
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.firstName|titlecase}} {{row.lastName| titlecase}}
-        </td>
+        <td mat-cell *matCellDef="let row"> {{row.firstName}} {{row.lastName}} </td>
       </ng-container>
       <ng-container matColumnDef="phone">
         <th mat-header-cell *matHeaderCellDef> Phone </th>
@@ -61,38 +46,16 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let row" (click)="openDetail(row)">
-            <div fxLayoutAlign="end">
-              <button mat-icon-button color="primary">
-                <mat-icon aria-label="View customer detail">edit</mat-icon>
-              </button>
-            </div>
+          <div fxLayoutAlign="end">
+            <button mat-icon-button color="primary">
+              <mat-icon aria-label="View customer detail">edit</mat-icon>
+            </button>
+          </div>
         </td>
       </ng-container>
-
       <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
-    </table> -->
-
-    <mat-list>
-      <table cdk-table [dataSource]="dataSource" [trackBy]="trackByUserId"></table>
-      <mat-list-item *ngFor="let customer of filteredContacts$ | async">
-        <mat-icon mat-list-icon
-          [svgIcon]="customer.statusCode | statusIcon">status</mat-icon>
-
-        <div mat-line>
-          {{ customer.firstName | titlecase }}
-          {{ customer.lastName | titlecase }}
-        </div>
-        <div mat-line>{{ customer.phoneNumber }}</div>
-        <div mat-line>{{ customer.emailAddress }}</div>
-        <button mat-icon-button color="primary" (click)="openDetail(customer)">
-            <mat-icon aria-label="View customer detail">edit</mat-icon>
-        </button>
-        </mat-list-item>
-    </mat-list>
+    </table>
   </mat-card>
 </div>
-
-
-
 

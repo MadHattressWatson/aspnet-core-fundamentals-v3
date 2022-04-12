@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { constructor } from 'jasmine';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 import { LayoutState, selectShowSideNav, toggleSidenav } from './store/layout.store';
@@ -11,7 +10,7 @@ import { User, Role }
   selector: 'crm-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
-  
+
 })
 export class AppComponent {
   title = 'Simple CRM';

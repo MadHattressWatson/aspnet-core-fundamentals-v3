@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { AppIconService } from './app-icon.service';
 
-describe('AppIconsService', () => {
+describe('AppIconService', () => {
   let service: AppIconService;
 
   beforeEach(() => {
