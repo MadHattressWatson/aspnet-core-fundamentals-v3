@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  server: 'https://localhost:4200/', // same host and port as angular app
+  server: 'https://localhost:44361/', // same host and port as angular app
   apiUrl: 'api/'
 };
 

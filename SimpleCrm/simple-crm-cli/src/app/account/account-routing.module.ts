@@ -25,10 +25,10 @@ const routes: Routes = [
     path: 'signin-microsoft',
     component: SigninMicrosoftComponent,
   },
-  {
-    path: 'signin-google',
-    component: SigninGoogleComponent,
-  },
+  // {
+  //   path: 'signin-google',
+  //   component: SigninGoogleComponent,
+  // },
   {
      path: 'not-authorized',
      component: NotAuthorizedComponent,
@@ -37,7 +37,7 @@ const routes: Routes = [
   @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
-    providers: []
+
   })
   export class AccountRoutingModule { }
 

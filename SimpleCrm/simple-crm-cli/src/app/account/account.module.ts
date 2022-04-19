@@ -6,8 +6,13 @@ import { SigninMicrosoftComponent } from './signin-microsoft/signin-microsoft.co
 import { SigninGoogleComponent } from './signin-google/signin-google.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
-import { LogoutCompleteComponent } from './logout-complete/logout-complete.component';
 import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -16,13 +21,17 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     SigninMicrosoftComponent,
     SigninGoogleComponent,
-    LogoutCompleteComponent,
-
   ],
+
   imports: [
+    ReactiveFormsModule,
     AccountRoutingModule,
     CommonModule,
-    BrowserModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    FlexLayoutModule,
     MatIconModule,
 
   ]

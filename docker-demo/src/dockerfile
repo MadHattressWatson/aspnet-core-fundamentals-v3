@@ -1,0 +1,25 @@
+#content of the dockerfile (no file extension) in docker-demo folder - don't include this comment line
+  FROM node:12.7-alpine AS build
+      WORKDIR /usr/src/app
+      ENV PORT 80
+      COPY package.json /code/package.json
+      RUN npm install
+      COPY . /code
+      CMD [ "node", "src/server.js" ]
+      RUN npm run build
+
+
+# FROM nginx:1.17.1-alpine
+#       COPY --from=build /usr/src/app/dist/docker-demo /usr/share/nginx/html
+
+#  ### STAGE 1: Build ###
+#       FROM node:12.7-alpine AS build
+#       WORKDIR /usr/src/app
+#       COPY package.json ./
+#       RUN npm install
+#       COPY . .
+#       RUN npm run build
+
+#       ### STAGE 2: Run ###
+#       FROM nginx:1.17.1-alpine
+#       COPY --from=build /usr/src/app/dist/docker-demo /usr/share/nginx/html

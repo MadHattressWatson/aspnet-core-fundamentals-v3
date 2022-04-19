@@ -6,6 +6,7 @@ export interface CredentialsViewModel {
 export interface MicrosoftOptions {
   client_id: string;
   scope: string;
+  state: string;
 }
 
 export interface MicrosoftAuthViewModel {
@@ -16,18 +17,20 @@ export interface MicrosoftAuthViewModel {
 
 export interface UserSummaryViewModel {
   id: string;
-  jwtToken: string;
   name: string;
   emailAddress: string;
+  jwtToken: string;
   roles: string[];
 }
 
 export function anonymousUser(): UserSummaryViewModel {
   return {
       id: '',
-      jwtToken: '',
       name: 'Anonymous',
       emailAddress: '',
+      jwtToken: '',
       roles: []
   };
 }
+
+
