@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from './authentication.service';
-import { LayoutState, selectShowSideNav, toggleSidenav } from './store/layout.store';
-import { User, Role }
+// import { LayoutState, selectShowSideNav, toggleSidenav } from './store/layout.store';
+
+
 
 @Component({
   selector: 'crm-root',
@@ -14,28 +14,18 @@ import { User, Role }
 })
 export class AppComponent {
   title = 'Simple CRM';
-  	  user: User;
-  AuthenticationService: any;
-
-      constructor(private store: Store<LayoutState>) { }
-    //   constructor(private authenticationService: AuthenticationService) {
-    //     this.authenticationService.user.subscribe(x => this.user = x);
-    // }
-      // constructor(private store: new Store<LayoutState>() {
-      //   this.showSideNav$ = this.store.pipe(select(selectShowSideNav));
-      // }
 
 
-    get isAdmin() {
-        return this.user && this.user.role === Role.Admin;
-    }
 
-    logout() {
-        this.authenticationService.logout();
-    }
+    //  constructor(private store: new Store<LayoutState>() {
+    //  this.showSideNav$ = this.store.pipe(select(selectShowSideNav));
+    // };
+
+   // sideNavToggle() {
+//   this.store.dispatch(toggleSidenav());
+// }
+// showSideNav$: new Observable<boolean>(); // <-- NEW
+
 }
-sideNavToggle() {
-  this.store.dispatch(toggleSidenav());
-}
-showSideNav$: new Observable<boolean>(); // <-- NEW
+
 

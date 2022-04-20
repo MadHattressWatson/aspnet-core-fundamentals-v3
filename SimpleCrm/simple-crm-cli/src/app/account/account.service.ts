@@ -7,7 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { anonymousUser, UserSummaryViewModel} from './account.model';
 import { Observable } from 'rxjs';
-import { CredentialsViewModel, MicrosoftOptions } from './account.model';
+import { CredentialsViewModel, MicrosoftOptions} from './account.model';
+
 
 
 @Injectable({
@@ -56,6 +57,7 @@ export class AccountService {
 
     loginComplete(user: UserSummaryViewModel, _message: string) {
       this.setUser(user);
+      
     }
 
     public loginMicrosoft(code: string, state: string): Observable<UserSummaryViewModel> {

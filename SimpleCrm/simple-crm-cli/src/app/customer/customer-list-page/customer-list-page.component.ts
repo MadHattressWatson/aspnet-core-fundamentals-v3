@@ -14,16 +14,10 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./customer-list-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DemoComponent {
 
-  @Input() customers: Customer[] | undefined
-
-}
-export class CustomerListPageComponent implements OnInit{
-  filteredCustomers$: Observable<Customer[]> | undefined;
+export class CustomerListPageComponent {
   displayColumns = ['icon', 'name', 'phone', 'email', 'status', 'actions'];
   filterInput = new FormControl();
-  filterForm: FormGroup | undefined;
   filteredContacts$: Observable<Customer[]>;
   contactCtrl: FormControl;
 
@@ -31,7 +25,7 @@ export class CustomerListPageComponent implements OnInit{
     private customerService: CustomerService,
     private router: Router,
     public dialog: MatDialog,
-    // constructor(private cdr: ChangeDetectorRef) {}
+    //constructor(private cdr: ChangeDetectorRef) {}
   )
   {
     this.contactCtrl = new FormControl();
@@ -44,24 +38,26 @@ export class CustomerListPageComponent implements OnInit{
       }),
     );
   }
-  ngOnIt(): void {}
+
 
   openDetail(customer: Customer): void {
     if(customer) {
     this.router.navigate([`./customer/${customer.customerId}`]);
   }
 }
+addCustomer(): void {
+  const dialogRef = this.dialog.open(CustomerCreateDialogComponent, {
+    width: '250px',
+    data: null,
+  });
 
-  addCustomer(): void {
-    const dialogRef = this.dialog.open(CustomerCreateDialogComponent, {
-      width: '250px',
-      data: null,
-    });
-
-  dialogRef.afterClosed().subscribe((customer:Customer) =>{
-    this.customerService.save(customer)
-    });
-  }
+dialogRef.afterClosed().subscribe((customer:Customer) =>{
+  this.customerService.save(customer)
+  });
 }
+}
+
+
+
 
 

@@ -17,7 +17,8 @@ export class SigninMicrosoftComponent {
     public route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    
   ) {
     // the token is in the querystring value named 'code'
     this.route.queryParamMap.subscribe(prms => {

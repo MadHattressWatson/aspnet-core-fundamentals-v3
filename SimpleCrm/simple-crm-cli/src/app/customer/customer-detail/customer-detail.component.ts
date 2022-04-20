@@ -47,13 +47,14 @@ export class CustomerDetailComponent implements OnInit {
     if (!this.detailForm.valid) {
       return;
     }
-    const customer = { ...this.customer, ...this.detailForm.value };
-    this.customerService.update(customer).subscribe((result) => {
-      if (!result) {
-        this.snackBar.open('Error updating customer record.', 'OOPS');
-        return;
-      }
-      this.snackBar.open('Customer updated', 'OK');
-    });
   }
+//     const customer = { ...this.customer, ...this.detailForm.value };
+//     this.customerService.update(customer).subscribe((result) => {
+//       if (!result) {
+//         this.snackBar.open('Error updating customer record.', 'OOPS');
+//         return;
+//       }
+//       this.snackBar.open('Customer updated', 'OK');
+//     });
+//   }
 }

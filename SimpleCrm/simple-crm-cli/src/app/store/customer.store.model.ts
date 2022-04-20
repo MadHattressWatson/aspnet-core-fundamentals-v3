@@ -1,11 +1,11 @@
-import { EntityAdapter, createEntityAdapter } from "@ngrx/entity";
-import { Customer } from "../customer/customer.model";
+// import { EntityAdapter, createEntityAdapter } from "@ngrx/entity";
+// import { Customer } from "../customer/customer.model";
 
-export const customerStateAdapter: EntityAdapter<Customer> = createEntityAdapter<Customer>({
-  selectId: (item: Customer) => item.customerId // <-- defines the key property
-});
+// export const customerStateAdapter: EntityAdapter<Customer> = createEntityAdapter<Customer>({
+//   selectId: (item: Customer) => item.customerId // <-- defines the key property
+// });
 
-export const initialCustomerState: CustomerState = customerStateAdapter.getInitialState({
-  searchStatus: '',
-  criteria: {term: ''}
-});
+// export const initialCustomerState: CustomerState = customerStateAdapter.getInitialState({
+//   searchStatus: '',
+//   criteria: {term: ''}
+// });

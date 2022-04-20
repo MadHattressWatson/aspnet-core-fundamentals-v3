@@ -7,15 +7,17 @@ import { CustomerModule } from './customer/customer.module';
 import { AccountModule } from './account/account.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './account/jwt-interceptor/jwt-interceptor.component';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { layoutFeatureKey, layoutReducer } from './store/layout.store';
-import { EffectsModule } from '@ngrx/effects';
-import { environment } from '../environments/environment';
-import { AppIconService } from './customer/AppIcon';
+// import { StoreModule } from '@ngrx/store';
+// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+// import { layoutFeatureKey, layoutReducer } from './store/layout.store';
+// import { EffectsModule } from '@ngrx/effects';
+import { AppIconService } from './shared/app-icon.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-// import { StatusIconPipe } from './app/status-icon.pipe';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
@@ -32,25 +34,28 @@ import { MatIconModule } from '@angular/material/icon';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    EffectsModule.forRoot([]),
+    MatListModule,
+    // EffectsModule.forRoot([]),
 
-  StoreModule.forRoot({}), // for no global state, use an empty object,  {}.
-  StoreModule.forFeature(layoutFeatureKey, layoutReducer),
-  StoreDevtoolsModule.instrument({
-    name: 'Nexul Academy - Simple CRM'
-  }),
-  StoreModule.forRoot({}, {}),
-  StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+  // StoreModule.forRoot({}), // for no global state, use an empty object,  {}.
+  // StoreModule.forFeature(layoutFeatureKey, layoutReducer),
+  // StoreDevtoolsModule.instrument({
+  //   name: 'Nexul Academy - Simple CRM'
+  // }),
+  // StoreModule.forRoot({}, {}),
+  // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
 
   providers: [
     {
-      provide:HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
     },
-    AppIconService],
+    AppIconService
+  ],
   bootstrap: [AppComponent]
+
 })
 
 export class AppModule {

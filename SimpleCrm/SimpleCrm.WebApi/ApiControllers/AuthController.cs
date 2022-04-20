@@ -48,7 +48,7 @@ namespace SimpleCrm.WebApi.ApiControllers
             });
         }
         [HttpPost("external/microsoft")]
-        public async Task<IActionResult> PostMicrosoft([FromBody] MicrosoftAuthViewModel model)
+        public async Task<IActionResult> PostMicrosoft([FromBody]MicrosoftAuthViewModel model)
         {
             var verifier = new MicrosoftAuthVerifier<AuthController>(_microsoftAuthSettings, _configuration["HttpHost"] + (model.BaseHref ?? "/"), _logger);
             var profile = await verifier.AcquireUser(model.AccessToken);

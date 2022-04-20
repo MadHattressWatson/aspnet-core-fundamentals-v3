@@ -7,7 +7,6 @@ import { CustomerListPageComponent } from './customer-list-page/customer-list-pa
 import { CustomerRoutingModule } from './customer-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomerService } from './customer.service';
-import { CustomerMockService } from './customer-mock.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -19,17 +18,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { StatusIconPipe } from './status-icon.pipe';
 import { MatListModule } from '@angular/material/list';
-import { EffectsModule } from '@ngrx/effects';
 import { JwtInterceptor } from '../account/jwt-interceptor/jwt-interceptor.component';
-import { AppIcon } from '../shared/app-icon.service';
 
 @NgModule({
   declarations: [
     CustomerListPageComponent,
     CustomerCreateDialogComponent,
     CustomerDetailComponent,
-    StatusIconPipe,
-    AppIcon.ServicePipe,
+    StatusIconPipe
   ],
 
   imports: [
@@ -47,23 +43,16 @@ import { AppIcon } from '../shared/app-icon.service';
     FlexLayoutModule,
     CustomerRoutingModule,
     MatListModule,
-    StatusIconPipe,
-    EffectsModule.forFeature([CustomerEffects]),
-
+    // EffectsModule.forFeature([CustomerEffects]),
   ],
 
   providers: [
+
 
       CustomerService
   ],
   entryComponents:[
     CustomerCreateDialogComponent
-  ]
-}),
-providers: [
-  {
-    provide:HTTP_INTERCEPTORS,
-    useClass: JwtInterceptor,
-    multi: true
-  },
+  ],
+})
 export class CustomerModule {}
