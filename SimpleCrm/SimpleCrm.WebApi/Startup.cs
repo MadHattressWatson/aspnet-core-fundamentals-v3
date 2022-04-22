@@ -49,8 +49,8 @@ namespace SimpleCrm.WebApi
             var microsoftOptions = Configuration.GetSection(nameof(MicrosoftAuthSettings));
             services.Configure<MicrosoftAuthSettings>(options =>
             {
-                options.ClientId = googleOptions[nameof(MicrosoftAuthSettings.ClientId)];
-                options.ClientSecret = googleOptions[nameof(MicrosoftAuthSettings.ClientSecret)];
+                options.ClientId = microsoftOptions[nameof(MicrosoftAuthSettings.ClientId)];
+                options.ClientSecret = microsoftOptions[nameof(MicrosoftAuthSettings.ClientSecret)];
             });
 
             services.AddResponseCaching();
