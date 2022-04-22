@@ -8,8 +8,8 @@ export class AppIconService {
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {
-      this.iconRegistry.addSvgIcon('microsoft', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-microsoft.png'));
-      this.iconRegistry.addSvgIcon('google', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-google.png'));
+      this.iconRegistry.addSvgIcon('microsoft', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-microsoft.svg'));
+      this.iconRegistry.addSvgIcon('google', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-google.svg'));
       this.iconRegistry.addSvgIcon('online', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-online.svg'));
       this.iconRegistry.addSvgIcon('money', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-money.svg'));
       this.iconRegistry.addSvgIcon('users', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-user.svg'));
