@@ -4,14 +4,14 @@ import { switchMap, map } from 'rxjs';
 import { CustomerService } from '../customer/customer.service';
 
 
-// ngrx effects that trigger side effects for specific actions.
-@Injectable()
-export class CustomerStoreEffects {
-  constructor(
-    private actions$: Actions, // <-- this event stream is where to listen for dispatched actions
-    private custSvc: CustomerService // <-- this is your service to be called for some actions
-  ) { }
-}
+// // ngrx effects that trigger side effects for specific actions.
+// @Injectable()
+// export class CustomerStoreEffects {
+//   constructor(
+//     private actions$: Actions, // <-- this event stream is where to listen for dispatched actions
+//     private custSvc: CustomerService // <-- this is your service to be called for some actions
+//   ) { }
+// }
 
 
     // searchCustomers$ = createEffect(() => this.actions$.pipe(

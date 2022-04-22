@@ -9,9 +9,9 @@ import { SigninMicrosoftComponent } from './account/signin-microsoft/signin-micr
 
 const routes: Routes = [
   {
-    path: 'account',
-    children: [
-      {
+    // path: 'account',
+    // children: [
+      // {
         path: 'register',
         component: RegistrationComponent
       },
@@ -19,8 +19,6 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
       },
-    ],
-  },
   {
     path: 'signin-microsoft',
     component: SigninMicrosoftComponent,
@@ -36,9 +34,9 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthenticatedGuard]
+
 })
 export class AppRoutingModule { }
 

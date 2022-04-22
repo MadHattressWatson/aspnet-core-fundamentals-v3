@@ -12,7 +12,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   selector: 'crm-customer-list-page',
   templateUrl: './customer-list-page.component.html',
   styleUrls: ['./customer-list-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CustomerListPageComponent {
