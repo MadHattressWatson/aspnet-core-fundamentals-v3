@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { CustomerRoutingModule } from './customer-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CustomerService } from './customer.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,18 +18,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { StatusIconPipe } from './status-icon.pipe';
 import { MatListModule } from '@angular/material/list';
-import { JwtInterceptor } from '../account/jwt-interceptor/jwt-interceptor.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomerStoreEffects } from './store/customer.store.effects';
 import { StoreModule } from '@ngrx/store';
 import { customerFeatureKey, customerReducer } from './store/customer.store';
+import { CustomerListTableComponent } from './customer-list-table/customer-list-table.component';
 
 @NgModule({
   declarations: [
     CustomerListPageComponent,
     CustomerCreateDialogComponent,
     CustomerDetailComponent,
-    StatusIconPipe
+    StatusIconPipe,
+    CustomerListTableComponent
   ],
 
   imports: [

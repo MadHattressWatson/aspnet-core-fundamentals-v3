@@ -2,17 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Customer } from './customer.model';
-import { CustomerService } from './customer.service';
+
 
 
 @Injectable()
-export class CustomerMockService extends CustomerService {
+export class CustomerService {
   customers: Customer[] = [];
   lastCustomerId: number;
 
   constructor(http: HttpClient) {
-    super(http);
-    console.warn('Warning: You are using the CustomerMockService, not indtended for production use.');
+    console.warn('Warning: You are using the CustomerMockService, not intended for production use.');
 
     const localCustomers = localStorage.getItem('customers');
     if(localCustomers){
@@ -32,7 +31,7 @@ export class CustomerMockService extends CustomerService {
     this.lastCustomerId = Math.max(...this.customers.map(x => x.customerId));
   }
 
-  override search(term: string): Observable<Customer[]> {
+  search(term: string): Observable<Customer[]> {
     const items = this.customers.filter(x =>
       (x.firstName + ' ' + x.lastName).indexOf(term) >= 0
       || x.phoneNumber.indexOf(term) >= 0
@@ -41,13 +40,13 @@ export class CustomerMockService extends CustomerService {
     return of(items);
   }
 
-  override get(customerId: number): Observable<Customer |undefined> {
+  get(customerId: number): Observable<Customer | undefined> {
     const item = this.customers.find(x =>
       x.customerId == customerId);
     return of(item);
   }
 
-  override insert(customer: Customer): Observable<Customer> {
+  insert(customer: Customer): Observable<Customer> {
     customer.customerId = Math.max(...this.customers.map(x => x.customerId));
     this.customers = [...this.customers, customer];
     localStorage.setItem('customers', JSON.stringify(this.customers));
@@ -56,7 +55,7 @@ export class CustomerMockService extends CustomerService {
     return of(customer);
   }
 
- override update(customer: Customer): Observable<Customer> {
+  update(customer: Customer): Observable<Customer> {
     const match = this.customers.find(x => x.customerId === customer.customerId);
 
     if (match) {
@@ -72,7 +71,4 @@ export class CustomerMockService extends CustomerService {
   }
 }
 
-function item(item: any): Observable<Customer> {
-  throw new Error('Function not implemented.');
-}
 

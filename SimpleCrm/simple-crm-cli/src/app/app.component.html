@@ -1,9 +1,10 @@
 <div style="height:100vh; display:flex; flex-direction:column;">
   <mat-toolbar color="primary">
-    <button mat-icon-button matRipple (click)="sidenavToggle()">
+    <button mat-icon-button matRipple (click)="sideNavToggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <span class="title">{{title}}</span>
+    SIMPLE CRM
+    <!-- <span class="title">{{title}}</span> -->
   </mat-toolbar>
   <mat-sidenav-container style="flex:1 100%">
     <mat-sidenav #sidenav [opened]="showSideNav$ | async" [mode]="'side'">
@@ -25,6 +26,6 @@
   </mat-sidenav-container>
   <div class="footer">
     Footer Area
-    SideNav: {{showSideNav$ | async}}
+    <!-- SideNav: {{showSideNav$ | async}} -->
   </div>
 </div>

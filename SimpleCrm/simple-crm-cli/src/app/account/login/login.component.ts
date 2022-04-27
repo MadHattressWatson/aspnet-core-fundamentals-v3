@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
   ) {
+    this.currentUser = this.accountService.user;
     this.loginForm = this.fb.group({
       emailAddress: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],

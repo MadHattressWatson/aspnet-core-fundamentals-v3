@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Customer } from '../customer.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerService } from '../customer.service';
-import { combineLatest, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CustomerCreateDialogComponent } from '../customer-create-dialog/customer-create-dialog.component';
 import { Router } from '@angular/router';
-import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
-import { FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, startWith, switchMap } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'crm-customer-list-page',
@@ -16,20 +16,24 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 
 export class CustomerListPageComponent {
-  displayColumns = ['icon', 'name', 'phone', 'email', 'status', 'actions'];
+  // displayColumns = ['icon', 'name', 'phone', 'email', 'status', 'actions'];
   filterInput = new FormControl();
-  filteredContacts$: Observable<Customer[]>;
   contactCtrl: FormControl;
+  filteredCustomers$:Observable<Customer[]> | undefined;
+
 
   constructor(
     private customerService: CustomerService,
     private router: Router,
     public dialog: MatDialog,
-    private cdr: ChangeDetectorRef
+    // private cdr: ChangeDetectorRef
+
   )
+
+
   {
     this.contactCtrl = new FormControl();
-    this.filteredContacts$ = this.contactCtrl.valueChanges.pipe(
+    this.filteredCustomers$ = this.contactCtrl.valueChanges.pipe(
       startWith(''),
       debounceTime(700),
       switchMap((formValue:string)=>
@@ -41,20 +45,21 @@ export class CustomerListPageComponent {
 
 
   openDetail(customer: Customer): void {
-    if(customer) {
-    this.router.navigate([`./customer/${customer.customerId}`]);
+      if(customer) {
+      this.router.navigate([`./customer/${customer.customerId}`]);
+    }
   }
-}
-addCustomer(): void {
-  const dialogRef = this.dialog.open(CustomerCreateDialogComponent, {
-    width: '250px',
-    data: null,
-  });
 
-dialogRef.afterClosed().subscribe((customer:Customer) =>{
-  this.customerService.save(customer)
-  });
-}
+  addCustomer(): void {
+    const dialogRef = this.dialog.open(CustomerCreateDialogComponent, {
+      width: '250px',
+      data: [] ,
+    });
+
+  dialogRef.afterClosed().subscribe((customer:Customer) =>{
+    this.customerService.save(customer)
+    });
+  }
 }
 
 

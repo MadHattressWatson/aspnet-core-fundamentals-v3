@@ -9,8 +9,9 @@ import { SigninMicrosoftComponent } from './account/signin-microsoft/signin-micr
 
 const routes: Routes = [
   {
-    // path: 'account',
-    // children: [
+    // path: 'customers',
+    // loadhildren: () => import('./customers/customers.module').then(mod => mod.CustomersModule)
+  // },
       // {
         path: 'register',
         component: RegistrationComponent

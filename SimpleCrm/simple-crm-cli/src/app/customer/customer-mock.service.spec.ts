@@ -1,6 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CustomerMockService } from './customer-mock.service';
+import { CustomerService } from './customer.service';
 
 describe('CustomerMockService', () => {
   let injectior: TestBed;
@@ -10,7 +11,7 @@ describe('CustomerMockService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
-      providers: [ CustomerMockService ]
+      providers: [ CustomerService ]
     });
     injectior = getTestBed();
     service = TestBed.inject(CustomerMockService);
@@ -20,7 +21,7 @@ describe('CustomerMockService', () => {
   afterEach(() => {
     httpMock.verify();
   });
-  
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
