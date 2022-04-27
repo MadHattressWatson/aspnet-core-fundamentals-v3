@@ -19,6 +19,10 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { StatusIconPipe } from './status-icon.pipe';
 import { MatListModule } from '@angular/material/list';
 import { JwtInterceptor } from '../account/jwt-interceptor/jwt-interceptor.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CustomerStoreEffects } from './store/customer.store.effects';
+import { StoreModule } from '@ngrx/store';
+import { customerFeatureKey, customerReducer } from './store/customer.store';
 
 @NgModule({
   declarations: [
@@ -43,16 +47,19 @@ import { JwtInterceptor } from '../account/jwt-interceptor/jwt-interceptor.compo
     FlexLayoutModule,
     CustomerRoutingModule,
     MatListModule,
-    // EffectsModule.forFeature([CustomerEffects]),
+    StoreModule.forFeature(customerFeatureKey, customerReducer),
+    EffectsModule.forFeature([CustomerStoreEffects]),
+
   ],
 
   providers: [
-
 
       CustomerService
   ],
   entryComponents:[
     CustomerCreateDialogComponent
   ],
+
+
 })
 export class CustomerModule {}

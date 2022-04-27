@@ -45,7 +45,7 @@ namespace SimpleCrm.WebApi.Auth
                 var response = await client.SendAsync(requestMessage);
                 var payloadStr = await response.Content.ReadAsStringAsync();
                 var payload = JObject.Parse(payloadStr);
-                //{"token_type":"Bearer","scope":"https://graph.microsoft.com/User.Read","expires_in":3599,"ext_expires_in":0,"access_token":"08f57ca2-6c10-471a-a44a-2e6cae975286"}
+                //{"token_type":"Bearer","scope":"https://graph.microsoft.com/User.Read","expires_in":3599,"ext_expires_in":0,"access_token":"f79fca35-36be-49ad-9b73-ffc85b2b02eb"}
 
                 if (payload["error"] != null)
                 {   // malformed request
