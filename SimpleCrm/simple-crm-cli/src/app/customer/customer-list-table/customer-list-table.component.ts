@@ -6,7 +6,9 @@ import { Customer } from '../customer.model';
   selector: 'crm-customer-list-table',
   templateUrl: './customer-list-table.component.html',
   styleUrls: ['./customer-list-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush,
+  // <li *ngFor="let customer of customers; trackBy:customerId">{{customer.name}}</li>
+
 })
 export class CustomerListTableComponent implements OnInit {
 

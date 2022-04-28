@@ -7,11 +7,11 @@ import { CustomerListTableComponent } from './customer-list-table/customer-list-
 
 
 const routes: Routes = [
-  {
-    path: 'customers',
-    pathMatch: 'full',
-    component: CustomerListTableComponent,
-  },
+  // {
+  //   path: 'customers',
+  //   pathMatch: 'full',
+  //   component: CustomerListTableComponent,
+  // },
   {
     path: 'customer/:id',
     pathMatch: 'full',

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CustomerModule } from './customer/customer.module';
 import { AccountModule } from './account/account.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './account/jwt-interceptor/jwt-interceptor.component';
@@ -30,7 +29,6 @@ import { layoutFeatureKey, layoutReducer } from './customer/store/layout.store';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CustomerModule,
     AccountModule,
     MatToolbarModule,
     MatSidenavModule,

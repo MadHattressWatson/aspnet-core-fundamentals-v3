@@ -9,10 +9,10 @@ import { SigninMicrosoftComponent } from './account/signin-microsoft/signin-micr
 
 const routes: Routes = [
   {
-    // path: 'customers',
-    // loadhildren: () => import('./customers/customers.module').then(mod => mod.CustomersModule)
-  // },
-      // {
+    path: 'customers',
+    loadChildren: () => import('./customer/customer.module').then(mod => mod.CustomerModule)
+  },
+      {
         path: 'register',
         component: RegistrationComponent
       },
@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: 'not-authorized',
     component: NotAuthorizedComponent,
-    // generated in the prior lesson. you may want to move it to this module and out of AppModule.
+
   },
 ];
 @NgModule({
