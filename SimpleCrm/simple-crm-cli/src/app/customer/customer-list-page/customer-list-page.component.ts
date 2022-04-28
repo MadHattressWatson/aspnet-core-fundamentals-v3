@@ -16,7 +16,7 @@ import { FormControl } from '@angular/forms';
 })
 
 export class CustomerListPageComponent {
-  // displayColumns = ['icon', 'name', 'phone', 'email', 'status', 'actions'];
+
   filterInput = new FormControl();
   contactCtrl: FormControl;
   filteredCustomers$:Observable<Customer[]> | undefined;

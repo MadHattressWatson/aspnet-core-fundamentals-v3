@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     FlexLayoutModule,
     MatIconModule,
+    HttpClientModule
 
   ]
 })

@@ -40,19 +40,4 @@
 </ng-container>
 <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
 <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
-<mat-list>
-  <mat-list-item *ngForTrackBy="let customer of customers">
-    <mat-icon mat-list-icon
-      [svgIcon]="customer.statusCode | statusIcon">status</mat-icon>
-    <div mat-line>
-      {{ customer.firstName | titlecase }}
-      {{ customer.lastName | titlecase }}
-    </div>
-    <div mat-line>{{ customer.phoneNumber }}</div>
-    <div mat-line>{{ customer.emailAddress }}</div>
-    <button mat-icon-button color="primary" (click)="openDetail(customer)">
-        <mat-icon aria-label="View customer detail">edit</mat-icon>
-      </button>
-    </mat-list-item>
-</mat-list>
 </table>

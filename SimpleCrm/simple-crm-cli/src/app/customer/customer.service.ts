@@ -13,7 +13,7 @@ import { Customer } from './customer.model';
   }
 
   search(term: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>('/api/customer/search?term=' + term);
+    return this.http.get<Customer[]>('/api/customers/?term=' + term);
   }
 
   save(customer: Customer): Observable<Customer> {

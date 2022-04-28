@@ -39,7 +39,7 @@ export class AccountService {
        return this.cachedUser;
     }
 
-  setUser(user: UserSummaryViewModel): void {
+  set User(user: UserSummaryViewModel): void {
         // called by your components that process a login from password, Google, Microsoft
         this.cachedUser.next(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -57,7 +57,7 @@ export class AccountService {
 
     loginComplete(user: UserSummaryViewModel, _message: string) {
       this.setUser(user);
-      
+
     }
 
     public loginMicrosoft(code: string, state: string): Observable<UserSummaryViewModel> {
