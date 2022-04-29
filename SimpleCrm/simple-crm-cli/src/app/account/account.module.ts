@@ -13,8 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     FlexLayoutModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
+
 
   ]
 })

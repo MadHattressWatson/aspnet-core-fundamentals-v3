@@ -18,7 +18,7 @@ export class SigninMicrosoftComponent {
     private router: Router,
     private accountService: AccountService,
     public snackBar: MatSnackBar,
-    
+
   ) {
     // the token is in the querystring value named 'code'
     this.route.queryParamMap.subscribe(prms => {
@@ -36,13 +36,13 @@ export class SigninMicrosoftComponent {
            this.loading = false;
            this.accountService.logout({navigate:false});
             if (typeof msg === 'string') {
-              this.snackBar.open('Verification Failed. ${msg}', 'OK', { duration: 10000 });
+              this.snackBar.open(`Verification Failed. ${msg}`, 'OK', { duration: 10000 });
               this.router.navigate(['./login']);
             } else if (msg.error) {
-              this.snackBar.open('Verification Failed. ${msg.error}', 'OK', { duration: 10000 });
+              this.snackBar.open(`Verification Failed. ${msg.error}`, 'OK', { duration: 10000 });
               this.router.navigate(['./register']);
             } else {
-              this.snackBar.open('Verification Failed. ${msg}', 'OK', { duration: 10000 });
+              this.snackBar.open(`Verification Failed. ${msg}`, 'OK', { duration: 10000 });
               this.router.navigate(['./login']);
             }
           }

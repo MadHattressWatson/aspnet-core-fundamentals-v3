@@ -1,5 +1,5 @@
-<table mat-table [dataSource]="customers || []">
-  <!-- [trackByCustomerId]="trackBycustomerId"> -->
+<table mat-table [dataSource]="customers || []" [trackBy]="trackByCustomerId">
+
   <!-- {{filterCustomers$ | async | json}} -->
 
 <ng-container matColumnDef="icon">

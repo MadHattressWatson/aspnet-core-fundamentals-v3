@@ -3,6 +3,7 @@ import { TitleCasePipe } from "@angular/common";
 export type InteractionMethod = 'phone' | 'email';
 
   export interface Customer {
+    CustomerId: any;
     customerId: number;
     firstName: string;
     lastName: string;

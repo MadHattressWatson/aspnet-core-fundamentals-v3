@@ -6,8 +6,8 @@ import { Customer } from '../customer.model';
   selector: 'crm-customer-list-table',
   templateUrl: './customer-list-table.component.html',
   styleUrls: ['./customer-list-table.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
-  // <li *ngFor="let customer of customers; trackBy:customerId">{{customer.name}}</li>
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 
 })
 export class CustomerListTableComponent implements OnInit {
@@ -24,13 +24,13 @@ export class CustomerListTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  trackByCustomerId(cust: Customer){
-    return cust.customerId;
+  trackByCustomerId(index:number,cust: Customer):number{
+    return cust.CustomerId;
   }
 
   openDetail(customer: Customer): void {
     if(customer) {
-    this.router.navigate([`./customer/${customer.customerId}`]);
+    this.router.navigate([`./customers/${customer.customerId}`]);
   }
   }
 

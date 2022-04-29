@@ -46,7 +46,7 @@ export class CustomerListPageComponent {
 
   openDetail(customer: Customer): void {
       if(customer) {
-      this.router.navigate([`./customer/${customer.customerId}`]);
+      this.router.navigate([`./customers/${customer.customerId}`]);
     }
   }
 

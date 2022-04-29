@@ -38,8 +38,11 @@ export class AccountService {
   get user(): BehaviorSubject<UserSummaryViewModel> {
        return this.cachedUser;
     }
+  // get isAnonymous(): boolean{
+  //   return this.cachedUser.name === 'Anonymous'
+  // }
 
-  set User(user: UserSummaryViewModel): void {
+  setUser(user: UserSummaryViewModel): void {
         // called by your components that process a login from password, Google, Microsoft
         this.cachedUser.next(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
